@@ -19,7 +19,7 @@ public class ProjectController {
     @Autowired
     private IProjectService projectService;
 
-    @GetMapping(value = "/projects", headers = {"Access-Control-Allow-Origin : *", "GET,PUT,POST,DELETE,OPTIONS"})
+    @GetMapping(value = "/projects", headers = {"Access-Control-Allow-Origin: *"})
     public List<Project> getProjects() throws ProjectTrackerException {
         return projectService.getProjects(null);
     }
