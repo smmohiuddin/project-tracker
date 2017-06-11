@@ -11,11 +11,15 @@ import {Project} from '../../shared/models/project';
 })
 export class ProjectComponent implements OnInit {
     projects: Project[];
+    errorMessage: string = "";
 
     constructor(private projectService: ProjectService) {}
 
     getProjects() : void {
-        this.projects = this.projectService.getProjects();
+        this.projectService.getProjects().subscribe(
+            projects => this.projects = projects,
+            error =>  this.errorMessage = <any>error
+        );
     }
 
     ngOnInit() {

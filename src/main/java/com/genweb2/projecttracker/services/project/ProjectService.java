@@ -19,9 +19,8 @@ public class ProjectService implements IProjectService {
     @Override
     public List<Project> getProjects(Map<String, Object> param) throws ProjectTrackerException {
         List<Project> projects = new ArrayList<>();
-        projects.add(new Project(1, "Ktr", new Date(), new Date(), new Date(), new Date()));
-        projects.add(new Project(2, "eMobile Court", new Date(), new Date(), new Date(), new Date()));
-        projects.add(new Project(3, "Cadence", new Date(), new Date(), new Date(), new Date()));
+        projects.add(new Project(2, "eMobile Court", "A project from A2I",new Date(), new Date(), new Date(), new Date()));
+        projects.add(new Project(3, "FAMS (ERD)", "A project from finance ministry of Bangladesh", new Date(), new Date(), new Date(), new Date()));
 
         return projects;
     }
