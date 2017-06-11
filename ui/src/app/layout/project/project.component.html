@@ -17,26 +17,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>FAMS (ERD)</td>
-                        <td>A project from finance ministry of Bangladesh</td>
-                        <td>15/06/2015</td>
-                        <td>15/06/2015</td>
-                        <td>15/06/2015</td>
-                        <td>15/06/2015</td>
-                        <td>
-                            <a class="btn btn-info">Add</a>
-                            <a class="btn btn-warning">Edit</a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>eMobile Court</td>
-                        <td>A project form A2I</td>
-                        <td>15/06/2015</td>
-                        <td>15/06/2015</td>
-                        <td>15/06/2015</td>
-                        <td>15/06/2015</td>
+                    <tr *ngFor='let project of projects'>
+                        <td>{{ project.projectName }}</td>
+                        <td>{{ project.projectDesc }}</td>
+                        <td>{{ project.startDate }}</td>
+                        <td>{{ project.actualStartDate }}</td>
+                        <td>{{ project.endDate }}</td>
+                        <td>{{ project.actualEndDate }}</td>
                         <td>
                             <a class="btn btn-info">Add</a>
                             <a class="btn btn-warning">Edit</a>
