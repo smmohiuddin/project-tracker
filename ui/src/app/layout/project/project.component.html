@@ -2,7 +2,14 @@
 <div class="row">
     <div class="col col-sm-12">
         <div class="card">
-            <div class="card-header">Project List</div>
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm-8">Project List</div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-sm btn-info pull-right">Add New</button>
+                    </div>
+                </div>
+            </div>
             <div class="card-block table-responsive">
                 <table class="table table-hover table-striped">
                     <thead>
@@ -10,9 +17,7 @@
                         <th>Project Name</th>
                         <th>Description</th>
                         <th>Start Date</th>
-                        <th>Actual Start Date</th>
                         <th>End Date</th>
-                        <th>Actual End Date</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -21,12 +26,9 @@
                         <td>{{ project.projectName }}</td>
                         <td>{{ project.projectDesc }}</td>
                         <td>{{ project.startDate |  date: 'dd/MM/yyyy' }}</td>
-                        <td>{{ project.actualStartDate |  date: 'dd/MM/yyyy' }}</td>
                         <td>{{ project.endDate |  date: 'dd/MM/yyyy' }}</td>
-                        <td>{{ project.actualEndDate |  date: 'dd/MM/yyyy' }}</td>
                         <td>
-                            <a class="btn btn-info">Add</a>
-                            <a class="btn btn-warning">Edit</a>
+                            <button class="btn btn-sm btn-warning" >Edit</button>
                         </td>
                     </tr>
 
