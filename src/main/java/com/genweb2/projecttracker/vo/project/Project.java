@@ -9,14 +9,16 @@ public class Project {
 
     private Integer projectID;
     private String projectName;
+    private String projectDesc;
     private Date startDate;
     private Date actualStartDate;
     private Date endDate;
     private Date actualEndDate;
 
-    public Project(Integer projectID, String projectName, Date startDate, Date actualStartDate, Date endDate, Date actualEndDate) {
+    public Project(Integer projectID, String projectName, String projectDesc, Date startDate, Date actualStartDate, Date endDate, Date actualEndDate) {
         this.projectID = projectID;
         this.projectName = projectName;
+        this.projectDesc = projectDesc;
         this.startDate = startDate;
         this.actualStartDate = actualStartDate;
         this.endDate = endDate;
@@ -37,6 +39,14 @@ public class Project {
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
+    }
+
+    public String getProjectDesc() {
+        return projectDesc;
+    }
+
+    public void setProjectDesc(String projectDesc) {
+        this.projectDesc = projectDesc;
     }
 
     public Date getStartDate() {
