@@ -1,22 +1,22 @@
 import {Component, OnInit} from '@angular/core';
 
 import {ProjectService} from '../../shared/services/project.service';
-import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, ModalDismissReasons, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 
 import {Project} from '../../shared/models/project';
 
 
 @Component({
     selector: 'app-projects',
-    providers:[ProjectService, NgbModal],
+    providers: [ProjectService, NgbModal],
     templateUrl: './project.component.html',
     styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit {
 
-    selectedProject : Project;
+    selectedProject: Project;
     projects: Project[];
-    closeResult: string;
+    errorMessage: string;
     modal: NgbModalRef;
 
     constructor(private projectService: ProjectService, private modalService: NgbModal) {};
@@ -32,11 +32,11 @@ export class ProjectComponent implements OnInit {
         } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
             return 'by clicking on a backdrop';
         } else {
-            return  `with: ${reason}`;
+            return `with: ${reason}`;
         }
     };
 
-    save() : void {
+    save(): void {
         console.log(this.selectedProject);
         this.closeModal("project info saved")
     };
@@ -45,8 +45,11 @@ export class ProjectComponent implements OnInit {
         this.modal.dismiss(reason);
     }
 
-    getProjects() : void {
-        this.projects = this.projectService.getProjects()
+    getProjects(): void {
+        this.projectService.getProjects().subscribe(
+            projects => this.projects = projects,
+            error => this.errorMessage = <any>error
+        );
     }
 
     ngOnInit() {

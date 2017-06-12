@@ -11,7 +11,7 @@ import {Project} from '../models/project';
 @Injectable()
 export class ProjectService {
 
-    // private projectUrl = 'http://localhost:8080/projects';
+    private projectUrl = 'http://localhost:8080/projects';
     private projects: Project[] = [
         {
             projectID: 1,
@@ -33,7 +33,7 @@ export class ProjectService {
         },
     ];
 
-    constructor() {}
+    constructor(private http: Http) {}
 
     /*private getHeaders(){
         let headers = new Headers();
@@ -41,29 +41,15 @@ export class ProjectService {
         return headers;
     }*/
 
-    /*getProjects(): Observable<Project[]> {
-        return this.http.get(this.projectUrl, {headers: this.getHeaders()}).map(this.mapData);
-    }*/
+    getProjects(): Observable<Project[]> {
+        return this.http.get(this.projectUrl).map(this.mapData);
+    }
 
-    getProjects(): Project[] {
+    /*getProjects(): Project[] {
         return this.projects;
     }
-
-    /*private mapData(response: Response) : Project[] {
-        return response.json().results.map(this.toProject)
+*/
+    private mapData(response: Response) : Project[] {
+        return response.json();
     }
-
-    private toProject(r: any) : Project {
-        let project =  <Project>({
-            projectID: r.projectID,
-            projectDesc: r.projectDesc,
-            projectName: r.projectName,
-            startDate: new Date(r.startDate),
-            actualStartDate: new Date(r.actualStartDate),
-            endDate: new Date(r.endDate),
-            actualEndDate: new Date(r.actualEndDate),
-        });
-        console.log('Parsed project:', project);
-        return project;
-    }*/
 }
