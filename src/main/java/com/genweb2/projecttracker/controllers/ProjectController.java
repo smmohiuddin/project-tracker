@@ -2,7 +2,7 @@ package com.genweb2.projecttracker.controllers;
 
 import com.genweb2.projecttracker.exception.ProjectTrackerException;
 import com.genweb2.projecttracker.services.project.IProjectService;
-import com.genweb2.projecttracker.vo.project.Project;
+import com.genweb2.projecttracker.vo.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,7 +1,7 @@
 package com.genweb2.projecttracker.services.project;
 
 import com.genweb2.projecttracker.exception.ProjectTrackerException;
-import com.genweb2.projecttracker.vo.project.Project;
+import com.genweb2.projecttracker.vo.Project;
 
 import java.util.List;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.genweb2.projecttracker.vo.project;
+package com.genweb2.projecttracker.vo;
 
 import java.util.Date;
 
@@ -8,22 +8,13 @@ import java.util.Date;
 public class Project {
 
     private Integer projectID;
-    private String projectName;
-    private String projectDesc;
+    private String shortName;
+    private String description;
     private Date startDate;
     private Date actualStartDate;
     private Date endDate;
     private Date actualEndDate;
-
-    public Project(Integer projectID, String projectName, String projectDesc, Date startDate, Date actualStartDate, Date endDate, Date actualEndDate) {
-        this.projectID = projectID;
-        this.projectName = projectName;
-        this.projectDesc = projectDesc;
-        this.startDate = startDate;
-        this.actualStartDate = actualStartDate;
-        this.endDate = endDate;
-        this.actualEndDate = actualEndDate;
-    }
+    private int status;
 
     public Integer getProjectID() {
         return projectID;
@@ -33,20 +24,20 @@ public class Project {
         this.projectID = projectID;
     }
 
-    public String getProjectName() {
-        return projectName;
+    public String getShortName() {
+        return shortName;
     }
 
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 
-    public String getProjectDesc() {
-        return projectDesc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setProjectDesc(String projectDesc) {
-        this.projectDesc = projectDesc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getStartDate() {
@@ -79,5 +70,13 @@ public class Project {
 
     public void setActualEndDate(Date actualEndDate) {
         this.actualEndDate = actualEndDate;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

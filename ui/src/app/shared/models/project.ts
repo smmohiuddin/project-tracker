@@ -1,7 +1,7 @@
 export class Project {
     projectID: number;
-    projectName: string;
-    projectDesc: string;
+    shortName: string;
+    description: string;
     startDate: Date;
     actualStartDate: Date;
     endDate: Date;
