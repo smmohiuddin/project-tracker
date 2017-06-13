@@ -24,4 +24,9 @@ public class ProjectService implements IProjectService {
     public List<Project> getProjects(Map<String, Object> param) throws ProjectTrackerException {
         return this.projectMapper.getAllProjects(null);
     }
+
+    @Override
+    public void createProject(Project project) throws ProjectTrackerException {
+        this.projectMapper.create(project);
+    }
 }

@@ -36,23 +36,27 @@ export class ProjectComponent implements OnInit {
         }
     };
 
-    save(): void {
-        console.log(this.selectedProject);
-        this.closeModal("project info saved")
-    };
-
-    closeModal(reason: any) {
-        this.modal.dismiss(reason);
-    }
-
     getProjects(): void {
         this.projectService.getProjects().subscribe(
             projects => this.projects = projects,
-            error => this.errorMessage = <any>error
+            error => this.errorMessage = <any> error
         );
     }
 
+    createProject(): void {
+        console.log(this.selectedProject);
+        this.projectService.createProject(this.selectedProject).subscribe(
+            projects => this.projects = projects,
+            error => this.errorMessage = <any> error
+        );
+        this.closeModal("project info saved")
+    };
+
     ngOnInit() {
         this.getProjects();
+    }
+
+    closeModal(reason: any) {
+        this.modal.dismiss(reason);
     }
 }

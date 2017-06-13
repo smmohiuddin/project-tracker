@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 import {Project} from '../models/project';
 
@@ -16,7 +17,13 @@ export class ProjectService {
     constructor(private http: Http) {}
 
     getProjects(): Observable<Project[]> {
-        return this.http.get(this.projectUrl).map(this.mapData);
+        return this.http.get(this.projectUrl).map(this.mapData).catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    }
+
+    createProject(body : Project): Observable<Project[]> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(this.projectUrl, body, options).map(this.mapData);
     }
 
     private mapData(response: Response) : Project[] {

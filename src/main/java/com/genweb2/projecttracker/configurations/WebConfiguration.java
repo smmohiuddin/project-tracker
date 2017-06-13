@@ -26,10 +26,6 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:4200")
-                .allowedMethods("PUT", "GET", "POST","DELETE")
-                .allowedHeaders("header1", "header2", "header3")
-                .exposedHeaders("header1", "header2")
-                .allowCredentials(false).maxAge(3600);
+                .allowedOrigins("http://localhost:4200");
     }
 }

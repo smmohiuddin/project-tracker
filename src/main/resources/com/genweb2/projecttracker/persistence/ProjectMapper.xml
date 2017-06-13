@@ -9,4 +9,23 @@
         SELECT p.ProjectID, p.ShortName, p.Description, p.StartDate, p.EndDate, p.ActualStartDate, p.ActualEndDate, p.Status FROM Project p
     </select>
 
+    <insert id="create" parameterType="Project">
+        INSERT INTO Project(
+              ShortName,
+              Description,
+              StartDate,
+              EndDate,
+              ActualStartDate,
+              ActualEndDate,
+              Status
+          )VALUES (
+              #{shortName},
+              #{description},
+              #{startDate},
+              #{endDate},
+              #{actualStartDate},
+              #{actualEndDate},
+              #{status}
+          )
+    </insert>
 </mapper>

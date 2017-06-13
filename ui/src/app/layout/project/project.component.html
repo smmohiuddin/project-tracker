@@ -55,7 +55,7 @@
             <div class="col-sm-12">
                 <fieldset class="form-group">
                     <label>Project Name</label>
-                    <input name="projectName" [(ngModel)]="selectedProject.projectName" class="form-control input-sm" placeholder="Enter text" />
+                    <input name="projectName" [(ngModel)]="selectedProject.shortName" class="form-control input-sm" placeholder="Enter text" />
                 </fieldset>
             </div>
         </div>
@@ -64,7 +64,7 @@
             <div class="col-sm-12">
                 <fieldset class="form-group">
                     <label>Project Description</label>
-                    <input name="projectDesc" [(ngModel)]="selectedProject.projectDesc"  class="form-control input-sm" placeholder="Enter text">
+                    <input name="projectDesc" [(ngModel)]="selectedProject.description"  class="form-control input-sm" placeholder="Enter text">
                 </fieldset>
             </div>
         </div>
@@ -125,7 +125,8 @@
             </div>
         </div>
     </div>
+
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="save()">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="createProject()">Save</button>
     </div>
 </ng-template>

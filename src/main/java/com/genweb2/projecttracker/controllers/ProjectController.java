@@ -5,6 +5,8 @@ import com.genweb2.projecttracker.services.project.IProjectService;
 import com.genweb2.projecttracker.vo.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -22,5 +24,11 @@ public class ProjectController {
     @GetMapping(value = "/projects")
     public List<Project> getProjects() throws ProjectTrackerException {
         return projectService.getProjects(null);
+    }
+
+    @PostMapping(value = "/projects")
+    public List<Project> createProject(@RequestBody Project project) throws ProjectTrackerException{
+        this.projectService.createProject(project);
+        return getProjects();
     }
 }
