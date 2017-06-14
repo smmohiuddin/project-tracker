@@ -21,7 +21,7 @@ public class ProjectController {
 
     @GetMapping(value = "/projects")
     public List<Project> getProjects() throws ProjectTrackerException {
-        return projectService.getProjects(null);
+        return projectService.getProjects();
     }
 
     @PostMapping(value = "/projects")

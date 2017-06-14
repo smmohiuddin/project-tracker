@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public interface IProjectService {
 
-    List<Project> getProjects(Map<String, Object> param) throws ProjectTrackerException;
+    List<Project> getProjects() throws ProjectTrackerException;
 
     void createProject(Project project) throws ProjectTrackerException;
 

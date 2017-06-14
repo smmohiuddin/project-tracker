@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public interface ProjectMapper {
 
-    List<Project> getAllProjects(Map<String, Object> param) throws ProjectTrackerException;
+    List<Project> getAllProjects() throws ProjectTrackerException;
 
     void create(Project project) throws ProjectTrackerException;
 

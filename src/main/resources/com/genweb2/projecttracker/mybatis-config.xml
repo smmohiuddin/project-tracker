@@ -11,6 +11,7 @@
 
     <typeAliases>
         <typeAlias alias="Project" type="com.genweb2.projecttracker.vo.Project"/>
+        <typeAlias alias="Epic" type="com.genweb2.projecttracker.vo.Epic"/>
 
     </typeAliases>
 

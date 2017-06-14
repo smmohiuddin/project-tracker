@@ -21,8 +21,8 @@ public class ProjectService implements IProjectService {
 
 
     @Override
-    public List<Project> getProjects(Map<String, Object> param) throws ProjectTrackerException {
-        return this.projectMapper.getAllProjects(null);
+    public List<Project> getProjects() throws ProjectTrackerException {
+        return this.projectMapper.getAllProjects();
     }
 
     @Override

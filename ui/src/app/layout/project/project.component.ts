@@ -41,16 +41,6 @@ export class ProjectComponent implements OnInit {
         this.modal = this.modalService.open(content);
     };
 
-    private getDismissReason(reason: any): string {
-        if (reason === ModalDismissReasons.ESC) {
-            return 'by pressing ESC';
-        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-            return 'by clicking on a backdrop';
-        } else {
-            return `with: ${reason}`;
-        }
-    };
-
     getProjects(): void {
         this.projectService.getProjects().subscribe(
             projects => this.projects = projects,
@@ -59,7 +49,7 @@ export class ProjectComponent implements OnInit {
     }
 
     createProject(): void {
-        this.processDates();
+        this.projectService.processDates(this.selectedProject, this.dateUtilService);
         this.projectService.createProject(this.selectedProject).subscribe(
             projects => this.projects = projects,
             error => this.errorMessage = <any> error
@@ -68,19 +58,12 @@ export class ProjectComponent implements OnInit {
     };
 
     updateProject(): void {
-        this.processDates();
+        this.projectService.processDates(this.selectedProject, this.dateUtilService);
         this.projectService.updateProjects(this.selectedProject).subscribe(
             projects => this.projects = projects,
             error => this.errorMessage = <any> error
         );
         this.closeModal("project info saved")
-    }
-
-    private processDates() : void{
-        this.selectedProject.startDate = this.dateUtilService.transformServerDate(this.selectedProject.startDate);
-        this.selectedProject.endDate= this.dateUtilService.transformServerDate(this.selectedProject.endDate);
-        this.selectedProject.actualStartDate = this.dateUtilService.transformServerDate(this.selectedProject.actualStartDate);
-        this.selectedProject.actualEndDate = this.dateUtilService.transformServerDate(this.selectedProject.actualEndDate);
     }
 
     ngOnInit() {
