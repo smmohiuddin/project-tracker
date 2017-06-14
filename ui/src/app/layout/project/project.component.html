@@ -27,10 +27,10 @@
                     <tr *ngFor='let project of projects'>
                         <td width="15%">{{ project.shortName }}</td>
                         <td width="25%">{{ project.description }}</td>
-                        <td width="5%">{{ project.startDate |  date: 'dd/MM/yyyy' }}</td>
-                        <td width="5%">{{ project.endDate |  date: 'dd/MM/yyyy' }}</td>
-                        <td width="17%">{{ project.actualStartDate |  date: 'dd/MM/yyyy' }}</td>
-                        <td width="18%">{{ project.actualEndDate |  date: 'dd/MM/yyyy' }}</td>
+                        <td width="5%">{{ project.startDate }}</td>
+                        <td width="5%">{{ project.endDate }}</td>
+                        <td width="17%">{{ project.actualStartDate }}</td>
+                        <td width="18%">{{ project.actualEndDate }}</td>
                         <td width="15%">
                             <button class="btn btn-sm btn-warning" (click)="open(content, project)">Edit</button>
                         </td>
@@ -127,6 +127,7 @@
     </div>
 
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="createProject()">Save</button>
+        <button *ngIf="!(selectedProject.projectID > 0)" type="button" class="btn btn-secondary" (click)="createProject()">Save</button>
+        <button *ngIf="selectedProject.projectID > 0" type="button" class="btn btn-secondary" (click)="updateProject()">Update</button>
     </div>
 </ng-template>

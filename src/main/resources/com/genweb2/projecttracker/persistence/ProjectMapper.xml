@@ -28,4 +28,16 @@
               #{status}
           )
     </insert>
+
+    <update id="update" parameterType="Project">
+        UPDATE Project SET
+          ShortName =  #{shortName},
+          Description =  #{description},
+          StartDate =  #{startDate},
+          EndDate =  #{endDate},
+          ActualStartDate =  #{actualStartDate},
+          ActualEndDate =  #{actualEndDate},
+          Status =  #{status}
+        WHERE ProjectID = #{projectID}
+    </update>
 </mapper>

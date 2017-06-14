@@ -29,4 +29,9 @@ public class ProjectService implements IProjectService {
     public void createProject(Project project) throws ProjectTrackerException {
         this.projectMapper.create(project);
     }
+
+    @Override
+    public void updateProject(Project project) throws ProjectTrackerException {
+        this.projectMapper.update(project);
+    }
 }

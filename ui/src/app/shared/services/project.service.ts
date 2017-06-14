@@ -23,7 +23,13 @@ export class ProjectService {
     createProject(body : Project): Observable<Project[]> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post(this.projectUrl, body, options).map(this.mapData);
+        return this.http.post(this.projectUrl, JSON.stringify(body), options).map(this.mapData);
+    }
+
+    updateProjects(body : Project): Observable<Project[]> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.put(this.projectUrl + "/" + body.projectID, JSON.stringify(body), options).map(this.mapData);
     }
 
     private mapData(response: Response) : Project[] {

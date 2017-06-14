@@ -1,5 +1,10 @@
 package com.genweb2.projecttracker.vo;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.genweb2.projecttracker.utility.DateDeSerializer;
+import com.genweb2.projecttracker.utility.DateSerializer;
+
 import java.util.Date;
 
 /**
@@ -40,34 +45,42 @@ public class Project {
         this.description = description;
     }
 
+    @JsonSerialize(using = DateSerializer.class)
     public Date getStartDate() {
         return startDate;
     }
 
+    @JsonDeserialize(using = DateDeSerializer.class)
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
+    @JsonSerialize(using = DateSerializer.class)
     public Date getActualStartDate() {
         return actualStartDate;
     }
 
+    @JsonDeserialize(using = DateDeSerializer.class)
     public void setActualStartDate(Date actualStartDate) {
         this.actualStartDate = actualStartDate;
     }
 
+    @JsonSerialize(using = DateSerializer.class)
     public Date getEndDate() {
         return endDate;
     }
 
+    @JsonDeserialize(using = DateDeSerializer.class)
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
+    @JsonSerialize(using = DateSerializer.class)
     public Date getActualEndDate() {
         return actualEndDate;
     }
 
+    @JsonDeserialize(using = DateDeSerializer.class)
     public void setActualEndDate(Date actualEndDate) {
         this.actualEndDate = actualEndDate;
     }

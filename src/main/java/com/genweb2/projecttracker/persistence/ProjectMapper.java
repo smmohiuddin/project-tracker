@@ -13,5 +13,7 @@ public interface ProjectMapper {
 
     List<Project> getAllProjects(Map<String, Object> param) throws ProjectTrackerException;
 
-    void create(Project project);
+    void create(Project project) throws ProjectTrackerException;
+
+    void update(Project project) throws ProjectTrackerException;
 }

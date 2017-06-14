@@ -14,4 +14,6 @@ public interface IProjectService {
     List<Project> getProjects(Map<String, Object> param) throws ProjectTrackerException;
 
     void createProject(Project project) throws ProjectTrackerException;
+
+    void updateProject(Project project) throws ProjectTrackerException;
 }
