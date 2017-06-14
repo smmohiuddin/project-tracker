@@ -1,6 +1,7 @@
 {
     "dashboard": "Dashboard",
     "projects": "Projects",
+    "epics": "Epics",
     "charts": "Charts",
     "tables": "Tables",
     "forms": "Forms",
