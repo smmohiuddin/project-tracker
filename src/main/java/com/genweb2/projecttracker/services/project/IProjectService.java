@@ -1,7 +1,7 @@
 package com.genweb2.projecttracker.services.project;
 
 import com.genweb2.projecttracker.exception.ProjectTrackerException;
-import com.genweb2.projecttracker.vo.project.Project;
+import com.genweb2.projecttracker.vo.Project;
 
 import java.util.List;
 import java.util.Map;
@@ -11,5 +11,9 @@ import java.util.Map;
  */
 public interface IProjectService {
 
-    List<Project> getProjects(Map<String, Object> param) throws ProjectTrackerException;
+    List<Project> getProjects() throws ProjectTrackerException;
+
+    void createProject(Project project) throws ProjectTrackerException;
+
+    void updateProject(Project project) throws ProjectTrackerException;
 }

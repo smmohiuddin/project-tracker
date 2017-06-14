@@ -1,10 +1,22 @@
-<app-page-header [heading]="'Projects'" [icon]="fa-list"></app-page-header>
+<app-page-header [heading]="'Epics'" [icon]="fa-list"></app-page-header>
+
 <div class="row">
     <div class="col col-sm-12">
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-sm-8">Project List</div>
+                    <div class="col-sm-8">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label class="">Project:</label>
+                                <div class="col-sm-8">
+                                    <select name="projectName" [(ngModel)]="selectedProject" class="form-control input-sm" (change)="onProjectChange()">
+                                        <option *ngFor="let project of projects" [ngValue]="project"> {{ project.shortName }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                     <div class="col-sm-4">
                         <button class="btn btn-sm btn-info pull-right" (click) = "open(content, null)">Add New</button>
                     </div>
@@ -14,28 +26,29 @@
                 <table class="table table-hover table-striped">
                     <thead>
                     <tr>
-                        <th>Project Name</th>
+                        <th>Epic Name</th>
                         <th>Description</th>
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Actual Start Date</th>
                         <th>Actual End Date</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor='let project of projects'>
-                        <td width="15%">{{ project.shortName }}</td>
-                        <td width="25%">{{ project.description }}</td>
-                        <td width="5%">{{ project.startDate }}</td>
-                        <td width="5%">{{ project.endDate }}</td>
-                        <td width="17%">{{ project.actualStartDate }}</td>
-                        <td width="18%">{{ project.actualEndDate }}</td>
+                    <tr *ngFor='let epic of epics'>
+                        <td width="15%">{{ epic.shortName }}</td>
+                        <td width="25%">{{ epic.description }}</td>
+                        <td width="5%">{{ epic.startDate }}</td>
+                        <td width="5%">{{ epic.endDate }}</td>
+                        <td width="17%">{{ epic.actualStartDate }}</td>
+                        <td width="18%">{{ epic.actualEndDate }}</td>
+                        <td width="18%">{{ epic.status }}</td>
                         <td width="15%">
                             <button class="btn btn-sm btn-warning" (click)="open(content, project)">Edit</button>
                         </td>
                     </tr>
-
                     </tbody>
                 </table>
             </div>
@@ -45,17 +58,29 @@
 
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
-        <h4 class="modal-title">Add New Project</h4>
+        <h4 class="modal-title">Add New Epic</h4>
         <button type="button" class="close" aria-label="Close" (click)="closeModal('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Project</label>
+                    <select name="project" [(ngModel)]="epic.project" class="form-control input-sm">
+                        <option *ngFor="let project of projects" [ngValue]="project"> {{ project.shortName }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-sm-12">
                 <fieldset class="form-group">
-                    <label>Project Name</label>
-                    <input name="projectName" [(ngModel)]="selectedProject.shortName" class="form-control input-sm" placeholder="Enter text" />
+                    <label>Epic Name</label>
+                    <input name="epicName" [(ngModel)]="epic.shortName"  class="form-control input-sm" placeholder="Enter a epic name">
                 </fieldset>
             </div>
         </div>
@@ -63,8 +88,8 @@
         <div class="row">
             <div class="col-sm-12">
                 <fieldset class="form-group">
-                    <label>Project Description</label>
-                    <input name="projectDesc" [(ngModel)]="selectedProject.description"  class="form-control input-sm" placeholder="Enter text">
+                    <label>Epic Description</label>
+                    <input name="epicDesc" [(ngModel)]="epic.description"  class="form-control input-sm" placeholder="Enter a epic description">
                 </fieldset>
             </div>
         </div>
@@ -74,7 +99,7 @@
                 <fieldset class="form-group">
                     <label>Start Date</label>
                     <div class="input-group">
-                        <input class="form-control" placeholder="yyyy-mm-dd" name="startDate" [(ngModel)]="selectedProject.startDate" ngbDatepicker #d1="ngbDatepicker">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="startDate" [(ngModel)]="epic.startDate" ngbDatepicker #d1="ngbDatepicker">
                         <div class="input-group-addon" (click)="d1.toggle()">
                             <span class="fa fa-calendar"></span>
                         </div>
@@ -88,7 +113,7 @@
                 <fieldset class="form-group">
                     <label>Actual Start Date</label>
                     <div class="input-group">
-                        <input class="form-control" placeholder="yyyy-mm-dd" name="actualStartDate" [(ngModel)]="selectedProject.actualStartDate" ngbDatepicker #d2="ngbDatepicker">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="actualStartDate" [(ngModel)]="epic.actualStartDate" ngbDatepicker #d2="ngbDatepicker">
                         <div class="input-group-addon" (click)="d2.toggle()">
                             <span class="fa fa-calendar"></span>
                         </div>
@@ -102,7 +127,7 @@
                 <fieldset class="form-group">
                     <label>End Date</label>
                     <div class="input-group">
-                        <input class="form-control" placeholder="yyyy-mm-dd" name="endDate" [(ngModel)]="selectedProject.endDate" ngbDatepicker #d3="ngbDatepicker">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="endDate" [(ngModel)]="epic.endDate" ngbDatepicker #d3="ngbDatepicker">
                         <div class="input-group-addon" (click)="d3.toggle()">
                             <span class="fa fa-calendar"></span>
                         </div>
@@ -116,7 +141,7 @@
                 <fieldset class="form-group">
                     <label>Actual End Date</label>
                     <div class="input-group">
-                        <input class="form-control" placeholder="yyyy-mm-dd" name="actualEndDate" [(ngModel)]="selectedProject.actualEndDate" ngbDatepicker #d4="ngbDatepicker">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="actualEndDate" [(ngModel)]="epic.actualEndDate" ngbDatepicker #d4="ngbDatepicker">
                         <div class="input-group-addon" (click)="d4.toggle()">
                             <span class="fa fa-calendar"></span>
                         </div>
@@ -127,7 +152,7 @@
     </div>
 
     <div class="modal-footer">
-        <button *ngIf="!(selectedProject.projectID > 0)" type="button" class="btn btn-secondary" (click)="createProject()">Save</button>
-        <button *ngIf="selectedProject.projectID > 0" type="button" class="btn btn-secondary" (click)="updateProject()">Update</button>
+        <button *ngIf="!(epic.epicID > 0)" type="button" class="btn btn-secondary" (click)="createEpic()">Save</button>
+        <button *ngIf="epic.epicID > 0" type="button" class="btn btn-secondary" (click)="updateEpic()">Update</button>
     </div>
 </ng-template>
