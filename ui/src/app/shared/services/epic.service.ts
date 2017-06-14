@@ -17,6 +17,12 @@ export class EpicService extends BaseService{
         return this.http.post(this.domainUrl + "/projects/" + projectID + "/epics", JSON.stringify(body), options).map(this.mapData);
     }
 
+    getAllEpic(projectID: number) : Observable<Epic[]> {
+        return this.http.get(this.domainUrl + "/projects/" + projectID + "/epics")
+            .map(this.mapData).
+            catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    }
+
     private mapData(response: Response) : Epic[] {
         return response.json();
     }

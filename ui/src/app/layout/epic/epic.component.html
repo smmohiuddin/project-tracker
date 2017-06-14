@@ -37,7 +37,18 @@
                     </tr>
                     </thead>
                     <tbody>
-
+                    <tr *ngFor='let epic of epics'>
+                        <td width="15%">{{ epic.shortName }}</td>
+                        <td width="25%">{{ epic.description }}</td>
+                        <td width="5%">{{ epic.startDate }}</td>
+                        <td width="5%">{{ epic.endDate }}</td>
+                        <td width="17%">{{ epic.actualStartDate }}</td>
+                        <td width="18%">{{ epic.actualEndDate }}</td>
+                        <td width="18%">{{ epic.status }}</td>
+                        <td width="15%">
+                            <button class="btn btn-sm btn-warning" (click)="open(content, project)">Edit</button>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

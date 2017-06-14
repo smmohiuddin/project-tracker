@@ -29,7 +29,10 @@ export class EpicComponent implements OnInit {
     }
 
     onProjectChange(): void {
-        console.log(this.selectedProject);
+        this.epicService.getAllEpic(this.selectedProject.projectID).subscribe(
+            epics => this.epics = epics,
+            error => this.errorMessage = <any> error
+        );
     }
 
     open(content, epic) {
