@@ -62,6 +62,15 @@ export class EpicComponent implements OnInit {
         this.closeModal("Epic info saved")
     };
 
+    updateEpic(): void {
+       this.processDates();
+        this.epicService.updateEpic(this.epic, this.epic.project.projectID).subscribe(
+            epics => this.epics = epics,
+            error => this.errorMessage = <any> error
+        );
+        this.closeModal("project info saved")
+    }
+
     private processDates(): void {
         this.epicService.processDates(this.epic, this.dateUtilService);
     }

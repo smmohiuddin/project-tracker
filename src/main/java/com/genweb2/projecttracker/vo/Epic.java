@@ -13,8 +13,8 @@ import java.util.Date;
  * Created by shakil on 6/14/17.
  */
 public class Epic {
+    private Integer epicID;
     private Project project;
-    private Integer epictID;
     private String shortName;
     private String description;
     private Date startDate;
@@ -31,12 +31,12 @@ public class Epic {
         this.project = project;
     }
 
-    public Integer getEpictID() {
-        return epictID;
+    public Integer getEpicID() {
+        return epicID;
     }
 
-    public void setEpictID(Integer epictID) {
-        this.epictID = epictID;
+    public void setEpicID(Integer epicID) {
+        this.epicID = epicID;
     }
 
     public String getShortName() {

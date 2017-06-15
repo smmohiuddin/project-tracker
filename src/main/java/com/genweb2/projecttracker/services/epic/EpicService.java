@@ -28,4 +28,10 @@ public class EpicService implements IEpicService{
         this.epicMapper.create(epic);
     }
 
+    @Override
+    public void updateEpic(Epic epic) throws ProjectTrackerException {
+        this.epicMapper.update(epic);
+    }
+
+
 }

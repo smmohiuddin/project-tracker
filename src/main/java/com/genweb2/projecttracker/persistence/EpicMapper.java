@@ -13,4 +13,6 @@ public interface EpicMapper {
     List<Epic> getAllEpic(Map<String, Object> param) throws ProjectTrackerException;
 
     void create(Epic epic) throws ProjectTrackerException;
+
+    void update(Epic epic) throws ProjectTrackerException;
 }
