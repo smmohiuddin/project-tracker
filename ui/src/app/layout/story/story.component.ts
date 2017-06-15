@@ -1,14 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {ProjectService} from "../../shared/services/project.service";
-import {Project} from "../../shared/models/project";
-import {EpicService} from "../../shared/services/epic.service";
+import {ProjectService, EpicService, StoryService} from "../../shared/services/index";
+import {Project, Epic, Story} from "../../shared/models/index";
 import {DateUtilService} from "../../shared/utilities/date-util.service";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {Epic} from "../../shared/models/epic";
+import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
     selector: 'app-story',
-    providers: [ProjectService, EpicService, DateUtilService, NgbModal],
+    providers: [ProjectService, EpicService, DateUtilService, StoryService, NgbModal],
     templateUrl: './story.component.html',
     styleUrls: ['./story.component.scss']
 })
@@ -19,8 +17,10 @@ export class StoryComponent implements OnInit {
     selectedProject: Project;
     selectedEpic: Epic;
     epics: Epic[];
+    modal:NgbModalRef;
+    story: Story;
 
-    constructor(private projectService: ProjectService, private epicService: EpicService) {
+    constructor(private projectService: ProjectService, private epicService: EpicService, private storyService: StoryService, private modalService: NgbModal) {
     }
 
     getProjects(): void {
@@ -41,8 +41,20 @@ export class StoryComponent implements OnInit {
         console.log(this.selectedEpic);
     }
 
+    open(content, story) {
+
+        this.story = new Story();
+
+        this.story.epic = this.selectedEpic;
+        // Open Modal
+        this.modal = this.modalService.open(content);
+    }
+
     ngOnInit() {
         this.getProjects();
     }
 
+    closeModal(reason: any) {
+        this.modal.dismiss(reason);
+    }
 }
