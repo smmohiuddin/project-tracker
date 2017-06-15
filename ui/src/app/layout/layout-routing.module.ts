@@ -10,6 +10,7 @@ const routes: Routes = [
             { path: 'projects', loadChildren: './project/project.module#ProjectModule' },
             { path: 'epics', loadChildren: './epic/epic.module#EpicModule' },
             { path: 'stories', loadChildren: './story/story.module#StoryModule' },
+            { path: 'tasks', loadChildren: './task/task.module#TaskModule' },
 
             /*{ path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
             { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
