@@ -14,4 +14,6 @@ public interface IEpicService {
     List<Epic> getAllEpic(Map<String, Object> param) throws ProjectTrackerException;
 
     void createEpic(Epic epic) throws ProjectTrackerException;
+
+    void updateEpic(Epic epic) throws ProjectTrackerException;
 }

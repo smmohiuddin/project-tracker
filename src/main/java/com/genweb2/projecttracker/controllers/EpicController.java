@@ -4,6 +4,7 @@ import com.genweb2.projecttracker.exception.ProjectTrackerException;
 import com.genweb2.projecttracker.services.epic.IEpicService;
 import com.genweb2.projecttracker.types.StatusType;
 import com.genweb2.projecttracker.vo.Epic;
+import com.genweb2.projecttracker.vo.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,9 +32,16 @@ public class EpicController {
     public List<Epic> createEpic(@PathVariable("projectID") Integer projectID, @RequestBody Epic epic) throws ProjectTrackerException {
         epic.setStatus(StatusType.OPEN.getCode());
         epic.getProject().setProjectID(projectID);
-
         this.epicService.createEpic(epic);
-
         return getEpics(epic.getProject().getProjectID());
     }
+
+    @PutMapping(value = "/projects/{projectID}/epics/{epicID}")
+    public List<Epic> updateProject(@PathVariable("projectID") Integer projectID, @PathVariable("epicID") Integer epicID, @RequestBody Epic epic) throws ProjectTrackerException {
+        epic.setEpicID(epicID);
+        epic.getProject().setProjectID(projectID);
+        this.epicService.updateEpic(epic);
+        return getEpics(projectID);
+    }
+
 }

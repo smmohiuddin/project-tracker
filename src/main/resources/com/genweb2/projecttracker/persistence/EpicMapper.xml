@@ -4,15 +4,23 @@
 
 <mapper namespace="com.genweb2.projecttracker.persistence.EpicMapper">
     
-    <select id="getAllEpic" parameterType="map" resultType="Project">
+    <select id="getAllEpic" parameterType="map" resultType="Epic">
         SELECT
-          e.EpicID, e.ProjectID, e.ShortName, e.Description, e.StartDate, e.EndDate, e.ActualStartDate, e.ActualEndDate, e.Status
+          e.EpicID,
+          e.ProjectID,
+          e.ShortName,
+          e.Description,
+          e.StartDate,
+          e.EndDate,
+          e.ActualStartDate,
+          e.ActualEndDate,
+          e.Status
         FROM Epic e
         WHERE 1 = 1
         <if test="projectID != null"> AND e.ProjectID = #{projectID} </if>
     </select>
 
-    <insert id="create" parameterType="Project">
+    <insert id="create" parameterType="Epic">
         INSERT INTO Epic(
               ProjectID,
               ShortName,
@@ -34,8 +42,9 @@
           )
     </insert>
 
-    <!--<update id="update" parameterType="Project">
-        UPDATE Project SET
+    <update id="update" parameterType="Epic">
+        UPDATE Epic SET
+          ProjectID = #{project.projectID},
           ShortName =  #{shortName},
           Description =  #{description},
           StartDate =  #{startDate},
@@ -43,6 +52,6 @@
           ActualStartDate =  #{actualStartDate},
           ActualEndDate =  #{actualEndDate},
           Status =  #{status}
-        WHERE ProjectID = #{projectID}
-    </update>-->
+        WHERE epicID = #{epicID}
+    </update>
 </mapper>

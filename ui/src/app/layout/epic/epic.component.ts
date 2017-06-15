@@ -37,8 +37,17 @@ export class EpicComponent implements OnInit {
 
     open(content, epic) {
 
-        this.epic = new Epic();
-        this.epic.project = this.selectedProject;
+        if (epic != null) {
+            this.epic = Object.assign({}, epic);
+            this.epic.project = this.selectedProject;
+            this.epic.startDate = this.dateUtilService.transformUIDate(this.epic.startDate);
+            this.epic.actualStartDate = this.dateUtilService.transformUIDate(this.epic.actualStartDate);
+            this.epic.endDate = this.dateUtilService.transformUIDate(this.epic.endDate);
+            this.epic.actualEndDate = this.dateUtilService.transformUIDate(this.epic.actualEndDate);
+        } else {
+            this.epic = new Epic();
+            this.epic.project = this.selectedProject;
+        }
 
         // Open Modal
         this.modal = this.modalService.open(content);
@@ -52,6 +61,15 @@ export class EpicComponent implements OnInit {
         );
         this.closeModal("Epic info saved")
     };
+
+    updateEpic(): void {
+       this.processDates();
+        this.epicService.updateEpic(this.epic, this.epic.project.projectID).subscribe(
+            epics => this.epics = epics,
+            error => this.errorMessage = <any> error
+        );
+        this.closeModal("project info saved")
+    }
 
     private processDates(): void {
         this.epicService.processDates(this.epic, this.dateUtilService);

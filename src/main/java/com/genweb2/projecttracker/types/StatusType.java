@@ -32,4 +32,26 @@ public enum StatusType {
     public void setDesc(String desc) {
         this.desc = desc;
     }
+
+    public static String getDescByCode(int code){
+        StatusType[] types = StatusType.values();
+        for (StatusType type : types) {
+            if(type.getCode() == code){
+                return type.getDesc();
+            }
+        }
+
+        return null;
+    }
+
+    public static Integer getCodeByDesc(String desc){
+        StatusType[] types = StatusType.values();
+        for (StatusType type : types) {
+            if(type.getDesc().equalsIgnoreCase(desc)){
+                return type.getCode();
+            }
+        }
+
+        return null;
+    }
 }

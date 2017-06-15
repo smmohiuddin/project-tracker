@@ -1,8 +1,7 @@
-import {Project} from "./project";
-
-export class Epic {
-    epicID : number;
-    project: Project;
+import {Epic} from "./epic";
+export class Story {
+    storyID : number;
+    epic: Epic;
     shortName: string;
     description: string;
     startDate: Date;

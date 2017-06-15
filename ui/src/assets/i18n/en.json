@@ -2,6 +2,8 @@
     "dashboard": "Dashboard",
     "projects": "Projects",
     "epics": "Epics",
+    "stories": "Stories",
+    "tasks": "Tasks",
     "charts": "Charts",
     "tables": "Tables",
     "forms": "Forms",
