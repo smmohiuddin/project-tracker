@@ -1,3 +1,61 @@
-<p>
-  story works!
-</p>
+<app-page-header [heading]="'Stories'" [icon]="fa-list"></app-page-header>
+
+<div class="row">
+    <div class="col col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <form class="form-inline">
+                            <div class="row">
+                                <div col="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="">Project:</label>
+                                        <div class="col-sm-8">
+                                            <select name="projectName" [(ngModel)]="selectedProject" class="form-control input-sm" (change)="onProjectChange()">
+                                                <option *ngFor="let project of projects" [ngValue]="project"> {{ project.shortName }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div col="col-sm-6" [hidden] = "!selectedProject">
+                                    <div class="form-group">
+                                        <label class="">Epic:</label>
+                                        <div class="col-sm-8">
+                                            <select name="projectName" [(ngModel)]="selectedEpic" class="form-control input-sm" (change)="onEpicChange()">
+                                                <option *ngFor="let epic of epics" [ngValue]="epic"> {{ epic.shortName }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-sm btn-info pull-right" (click) = "open(content, null)">Add New</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-block table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>Story Name</th>
+                        <th>Description</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Actual Start Date</th>
+                        <th>Actual End Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
