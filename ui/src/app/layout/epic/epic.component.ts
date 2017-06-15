@@ -37,8 +37,17 @@ export class EpicComponent implements OnInit {
 
     open(content, epic) {
 
-        this.epic = new Epic();
-        this.epic.project = this.selectedProject;
+        if (epic != null) {
+            this.epic = Object.assign({}, epic);
+            this.epic.project = this.selectedProject;
+            this.epic.startDate = this.dateUtilService.transformUIDate(this.epic.startDate);
+            this.epic.actualStartDate = this.dateUtilService.transformUIDate(this.epic.actualStartDate);
+            this.epic.endDate = this.dateUtilService.transformUIDate(this.epic.endDate);
+            this.epic.actualEndDate = this.dateUtilService.transformUIDate(this.epic.actualEndDate);
+        } else {
+            this.epic = new Epic();
+            this.epic.project = this.selectedProject;
+        }
 
         // Open Modal
         this.modal = this.modalService.open(content);
