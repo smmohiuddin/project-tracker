@@ -31,9 +31,7 @@ public class EpicController {
     public List<Epic> createEpic(@PathVariable("projectID") Integer projectID, @RequestBody Epic epic) throws ProjectTrackerException {
         epic.setStatus(StatusType.OPEN.getCode());
         epic.getProject().setProjectID(projectID);
-
         this.epicService.createEpic(epic);
-
         return getEpics(epic.getProject().getProjectID());
     }
 }

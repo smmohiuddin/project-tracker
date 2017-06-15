@@ -6,7 +6,15 @@
     
     <select id="getAllEpic" parameterType="map" resultType="Project">
         SELECT
-          e.EpicID, e.ProjectID, e.ShortName, e.Description, e.StartDate, e.EndDate, e.ActualStartDate, e.ActualEndDate, e.Status
+          e.EpicID,
+          e.ProjectID,
+          e.ShortName,
+          e.Description,
+          e.StartDate,
+          e.EndDate,
+          e.ActualStartDate,
+          e.ActualEndDate,
+          e.Status
         FROM Epic e
         WHERE 1 = 1
         <if test="projectID != null"> AND e.ProjectID = #{projectID} </if>

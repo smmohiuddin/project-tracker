@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.genweb2.projecttracker.utility.DateDeSerializer;
 import com.genweb2.projecttracker.utility.DateSerializer;
+import com.genweb2.projecttracker.utility.StatusDeSerializer;
+import com.genweb2.projecttracker.utility.StatusSerializer;
 
 import java.util.Date;
 
@@ -19,7 +21,7 @@ public class Epic {
     private Date actualStartDate;
     private Date endDate;
     private Date actualEndDate;
-    private int status;
+    private Integer status;
 
     public Project getProject() {
         return project;
@@ -93,11 +95,13 @@ public class Epic {
         this.actualEndDate = actualEndDate;
     }
 
-    public int getStatus() {
+    @JsonSerialize(using = StatusSerializer.class)
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    @JsonDeserialize(using = StatusDeSerializer.class)
+    public void setStatus(Integer status) {
         this.status = status;
     }
 }

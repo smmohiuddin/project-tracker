@@ -9,5 +9,5 @@ export class Epic {
     actualStartDate: Date;
     endDate: Date;
     actualEndDate: Date;
-    Status: number;
+    status: number;
 }
