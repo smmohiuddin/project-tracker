@@ -67,3 +67,13 @@ CREATE TABLE Task
 ALTER TABLE Task
   ADD CONSTRAINT Task_Story_StoryID_fk
 FOREIGN KEY (StoryID) REFERENCES Story (StoryID) ON UPDATE CASCADE;
+
+-- Create Resource Table
+CREATE TABLE Resource
+(
+    ResourceID INT PRIMARY KEY AUTO_INCREMENT,
+    ResourceName VARCHAR(255) NOT NULL,
+    MonthlySalary INT NOT NULL,
+    OverHeadRatio DOUBLE,
+    BillingRate INT
+);
