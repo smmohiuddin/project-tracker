@@ -58,7 +58,18 @@
                     </tr>
                     </thead>
                     <tbody>
-
+                    <tr *ngFor='let story of stories'>
+                        <td width="15%">{{ story.shortName }}</td>
+                        <td width="25%">{{ story.description }}</td>
+                        <td width="5%">{{ story.startDate }}</td>
+                        <td width="5%">{{ story.endDate }}</td>
+                        <td width="17%">{{ story.actualStartDate }}</td>
+                        <td width="18%">{{ story.actualEndDate }}</td>
+                        <td width="18%">{{ story.status }}</td>
+                        <td width="15%">
+                            <button class="btn btn-sm btn-warning" (click)="open(content, story)">Edit</button>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
