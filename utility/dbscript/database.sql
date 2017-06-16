@@ -13,7 +13,7 @@ CREATE TABLE Project
 );
 CREATE UNIQUE INDEX Project_ShortName_uindex ON Project (ShortName);
 
-
+-- Create Epic table
 CREATE TABLE Epic
 (
     EpicID INT PRIMARY KEY AUTO_INCREMENT,
@@ -30,3 +30,40 @@ CREATE TABLE Epic
 ALTER TABLE Epic
 ADD CONSTRAINT Epic_Project_ProjectID_fk
 FOREIGN KEY (ProjectID) REFERENCES Project (ProjectID) ON UPDATE CASCADE;
+
+
+-- Create Story Table
+CREATE TABLE Story
+(
+  StoryID INT PRIMARY KEY AUTO_INCREMENT,
+  EpicID INT,
+  ShortName VARCHAR(255) NOT NULL,
+  Description TEXT,
+  StartDate DATETIME,
+  EndDate DATETIME,
+  ActualStartDate DATETIME,
+  ActualEndDate DATETIME,
+  Status TINYINT
+);
+
+ALTER TABLE Story
+  ADD CONSTRAINT Story_Epic_EpicID_fk
+FOREIGN KEY (EpicID) REFERENCES Epic (EpicID) ON UPDATE CASCADE;
+
+-- Create Task Table
+CREATE TABLE Task
+(
+  TaskID INT PRIMARY KEY AUTO_INCREMENT,
+  StoryID INT,
+  ShortName VARCHAR(255) NOT NULL,
+  Description TEXT,
+  StartDate DATETIME,
+  EndDate DATETIME,
+  ActualStartDate DATETIME,
+  ActualEndDate DATETIME,
+  Status TINYINT
+);
+
+ALTER TABLE Task
+  ADD CONSTRAINT Task_Story_StoryID_fk
+FOREIGN KEY (StoryID) REFERENCES Story (StoryID) ON UPDATE CASCADE;

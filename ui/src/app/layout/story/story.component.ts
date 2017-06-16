@@ -17,7 +17,7 @@ export class StoryComponent implements OnInit {
     selectedProject: Project;
     selectedEpic: Epic;
     epics: Epic[];
-    modal:NgbModalRef;
+    modal: NgbModalRef;
     story: Story;
 
     constructor(private projectService: ProjectService, private epicService: EpicService, private storyService: StoryService, private modalService: NgbModal) {
@@ -45,7 +45,10 @@ export class StoryComponent implements OnInit {
 
         this.story = new Story();
 
-        this.story.epic = this.selectedEpic;
+        this.story.epic = (this.selectedEpic === undefined) ? new Epic() : this.selectedEpic;
+
+        this.story.epic.project = this.selectedProject;
+
         // Open Modal
         this.modal = this.modalService.open(content);
     }

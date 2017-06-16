@@ -12,19 +12,25 @@
                                     <div class="form-group">
                                         <label class="">Project:</label>
                                         <div class="col-sm-8">
-                                            <select name="projectName" [(ngModel)]="selectedProject" class="form-control input-sm" (change)="onProjectChange()">
-                                                <option *ngFor="let project of projects" [ngValue]="project"> {{ project.shortName }}</option>
+                                            <select name="projectName" [(ngModel)]="selectedProject"
+                                                    class="form-control input-sm" (change)="onProjectChange()">
+                                                <option *ngFor="let project of projects" [ngValue]="project"> {{
+                                                    project.shortName }}
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div col="col-sm-6" [hidden] = "!selectedProject">
+                                <div col="col-sm-6" [hidden]="!selectedProject">
                                     <div class="form-group">
                                         <label class="">Epic:</label>
                                         <div class="col-sm-8">
-                                            <select name="projectName" [(ngModel)]="selectedEpic" class="form-control input-sm" (change)="onEpicChange()">
-                                                <option *ngFor="let epic of epics" [ngValue]="epic"> {{ epic.shortName }}</option>
+                                            <select name="projectName" [(ngModel)]="selectedEpic"
+                                                    class="form-control input-sm" (change)="onEpicChange()">
+                                                <option *ngFor="let epic of epics" [ngValue]="epic"> {{ epic.shortName
+                                                    }}
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -33,7 +39,7 @@
                         </form>
                     </div>
                     <div class="col-sm-4">
-                        <button class="btn btn-sm btn-info pull-right" (click) = "open(content, null)">Add New</button>
+                        <button class="btn btn-sm btn-info pull-right" (click)="open(content, null)">Add New</button>
                     </div>
                 </div>
             </div>
@@ -74,90 +80,100 @@
             <div class="col-sm-12">
                 <div class="form-group">
                     <label>Project</label>
-                    <select name="project" [(ngModel)]="story.epic.project" class="form-control input-sm">
+                    <select name="project" [(ngModel)]="story.epic.project" class="form-control input-sm"
+                            (change)="onProjectChange()">
                         <option *ngFor="let project of projects" [ngValue]="project"> {{ project.shortName }}</option>
                     </select>
                 </div>
             </div>
         </div>
-        <!--
-                <div class="row">
-                    <div class="col-sm-12">
-                        <fieldset class="form-group">
-                            <label>Epic Name</label>
-                            <input name="epicName" [(ngModel)]="epic.shortName"  class="form-control input-sm" placeholder="Enter a epic name">
-                        </fieldset>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <fieldset class="form-group">
-                            <label>Epic Description</label>
-                            <input name="epicDesc" [(ngModel)]="epic.description"  class="form-control input-sm" placeholder="Enter a epic description">
-                        </fieldset>
-                    </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Epic</label>
+                    <select name="epic" [(ngModel)]="story.epic" class="form-control input-sm">
+                        <option *ngFor="let epic of epics" [ngValue]="epic"> {{ epic.shortName }}</option>
+                    </select>
                 </div>
+            </div>
+        </div>
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <fieldset class="form-group">
-                            <label>Start Date</label>
-                            <div class="input-group">
-                                <input class="form-control" placeholder="yyyy-mm-dd" name="startDate" [(ngModel)]="epic.startDate" ngbDatepicker #d1="ngbDatepicker">
-                                <div class="input-group-addon" (click)="d1.toggle()">
-                                    <span class="fa fa-calendar"></span>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <fieldset class="form-group">
+                    <label>Story Name</label>
+                    <input name="storyName" [(ngModel)]="story.shortName" class="form-control input-sm"
+                           placeholder="Enter a story name">
+                </fieldset>
+            </div>
+        </div>
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <fieldset class="form-group">
-                            <label>Actual Start Date</label>
-                            <div class="input-group">
-                                <input class="form-control" placeholder="yyyy-mm-dd" name="actualStartDate" [(ngModel)]="epic.actualStartDate" ngbDatepicker #d2="ngbDatepicker">
-                                <div class="input-group-addon" (click)="d2.toggle()">
-                                    <span class="fa fa-calendar"></span>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <fieldset class="form-group">
+                    <label>Story Description</label>
+                    <input name="storyDesc" [(ngModel)]="story.description" class="form-control input-sm"
+                           placeholder="Enter a story description">
+                </fieldset>
+            </div>
+        </div>
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <fieldset class="form-group">
-                            <label>End Date</label>
-                            <div class="input-group">
-                                <input class="form-control" placeholder="yyyy-mm-dd" name="endDate" [(ngModel)]="epic.endDate" ngbDatepicker #d3="ngbDatepicker">
-                                <div class="input-group-addon" (click)="d3.toggle()">
-                                    <span class="fa fa-calendar"></span>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <fieldset class="form-group">
-                            <label>Actual End Date</label>
-                            <div class="input-group">
-                                <input class="form-control" placeholder="yyyy-mm-dd" name="actualEndDate" [(ngModel)]="epic.actualEndDate" ngbDatepicker #d4="ngbDatepicker">
-                                <div class="input-group-addon" (click)="d4.toggle()">
-                                    <span class="fa fa-calendar"></span>
-                                </div>
-                            </div>
-                        </fieldset>
+        <div class="row">
+            <div class="col-sm-12">
+                <fieldset class="form-group">
+                    <label>Start Date</label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="startDate"
+                               [(ngModel)]="story.startDate" ngbDatepicker #d1="ngbDatepicker">
+                        <div class="input-group-addon" (click)="d1.toggle()"><span class="fa fa-calendar"></span></div>
                     </div>
-                </div>-->
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <fieldset class="form-group">
+                    <label>Actual Start Date</label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="actualStartDate"
+                               [(ngModel)]="story.actualStartDate" ngbDatepicker #d2="ngbDatepicker">
+                        <div class="input-group-addon" (click)="d2.toggle()"><span class="fa fa-calendar"></span></div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <fieldset class="form-group">
+                    <label>End Date</label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="endDate" [(ngModel)]="story.endDate" ngbDatepicker #d3="ngbDatepicker">
+                        <div class="input-group-addon" (click)="d3.toggle()"><span class="fa fa-calendar"></span></div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <fieldset class="form-group">
+                    <label>Actual End Date</label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="actualEndDate" [(ngModel)]="story.actualEndDate" ngbDatepicker #d4="ngbDatepicker">
+                        <div class="input-group-addon" (click)="d4.toggle()"><span class="fa fa-calendar"></span></div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
     </div>
 
     <div class="modal-footer">
-        <!--<button *ngIf="!(epic.epicID > 0)" type="button" class="btn btn-secondary" (click)="createEpic()">Save</button>
-        <button *ngIf="epic.epicID > 0" type="button" class="btn btn-secondary" (click)="updateEpic()">Update</button>-->
+        <button *ngIf="!(story.epicID > 0)" type="button" class="btn btn-secondary" (click)="createStory()">Save</button>
+        <button *ngIf="story.epicID > 0" type="button" class="btn btn-secondary" (click)="updateStory()">Update</button>
     </div>
 </ng-template>
