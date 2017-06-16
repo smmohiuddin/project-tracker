@@ -41,4 +41,17 @@
               #{status}
           )
     </insert>
+
+    <update id="update" parameterType="Story">
+        UPDATE Story SET
+        EpicID = #{epic.epicID},
+        ShortName =  #{shortName},
+        Description =  #{description},
+        StartDate =  #{startDate},
+        EndDate =  #{endDate},
+        ActualStartDate =  #{actualStartDate},
+        ActualEndDate =  #{actualEndDate},
+        Status =  #{status}
+        WHERE StoryID = #{storyID}
+    </update>
 </mapper>

@@ -5,15 +5,15 @@ package com.genweb2.projecttracker.vo;
  */
 public class Story extends Base {
 
-    private Integer epicID;
+    private Integer storyID;
     private Epic epic;
 
-    public Integer getEpicID() {
-        return epicID;
+    public Integer getStoryID() {
+        return storyID;
     }
 
-    public void setEpicID(Integer epicID) {
-        this.epicID = epicID;
+    public void setStoryID(Integer storyID) {
+        this.storyID = storyID;
     }
 
     public Epic getEpic() {

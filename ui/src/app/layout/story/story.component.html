@@ -184,7 +184,7 @@
     </div>
 
     <div class="modal-footer">
-        <button *ngIf="!(story.epicID > 0)" type="button" class="btn btn-secondary" (click)="createStory()">Save</button>
-        <button *ngIf="story.epicID > 0" type="button" class="btn btn-secondary" (click)="updateStory()">Update</button>
+        <button *ngIf="!(story.storyID > 0)" type="button" class="btn btn-secondary" (click)="createStory()">Save</button>
+        <button *ngIf="story.storyID > 0" type="button" class="btn btn-secondary" (click)="updateStory()">Update</button>
     </div>
 </ng-template>

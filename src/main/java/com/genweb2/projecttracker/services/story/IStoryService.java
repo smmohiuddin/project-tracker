@@ -14,4 +14,6 @@ public interface IStoryService {
     List<Story> getAllStories(Map<String, Object> param) throws ProjectTrackerException;
 
     void createStory(Story story) throws ProjectTrackerException;
+
+    void updateStory(Story story) throws ProjectTrackerException;
 }

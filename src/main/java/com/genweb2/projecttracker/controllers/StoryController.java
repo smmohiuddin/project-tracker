@@ -3,6 +3,7 @@ package com.genweb2.projecttracker.controllers;
 import com.genweb2.projecttracker.exception.ProjectTrackerException;
 import com.genweb2.projecttracker.services.story.IStoryService;
 import com.genweb2.projecttracker.types.StatusType;
+import com.genweb2.projecttracker.vo.Epic;
 import com.genweb2.projecttracker.vo.Story;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,14 @@ public class StoryController {
         story.setStatus(StatusType.OPEN.getCode());
         story.getEpic().setEpicID(epicID);
         this.storyService.createStory(story);
-        return getStories(story.getEpic().getEpicID());
+        return getStories(epicID);
+    }
+
+    @PutMapping(value = "/epics/{epicID}/stories/{storyID}")
+    public List<Story> updateProject(@PathVariable("epicID") Integer epicID, @PathVariable("storyID") Integer storyID, @RequestBody Story story) throws ProjectTrackerException {
+        story.setStoryID(storyID);
+        story.getEpic().setEpicID(epicID);
+        this.storyService.updateStory(story);
+        return getStories(epicID);
     }
 }

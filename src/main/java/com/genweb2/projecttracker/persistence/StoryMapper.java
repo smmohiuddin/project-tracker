@@ -13,4 +13,6 @@ public interface StoryMapper {
     List<Story> getAllStories(Map<String, Object> param) throws ProjectTrackerException;
 
     void create(Story story) throws ProjectTrackerException;
+
+    void update(Story story) throws ProjectTrackerException;
 }

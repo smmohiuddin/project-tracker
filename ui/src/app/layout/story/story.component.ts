@@ -33,11 +33,20 @@ export class StoryComponent implements OnInit {
 
     createStory(): void {
         this.storyService.processDates(this.story, this.dateUtilService);
-        this.storyService.createStory(this.story, this.story.epic.epicID, this.story.epic.project.projectID).subscribe(
+        this.storyService.createStory(this.story, this.story.epic.epicID).subscribe(
             stories => this.stories = stories,
             error => this.errorMessage = <any> error
         );
         this.closeModal("Epic info saved");
+    }
+
+    updateStory(): void {
+        this.storyService.processDates(this.story, this.dateUtilService);
+        this.storyService.updateStory(this.story, this.story.epic.epicID).subscribe(
+            stories => this.stories = stories,
+            error => this.errorMessage = <any> error
+        );
+        this.closeModal("project info saved")
     }
 
     open(content, story) {

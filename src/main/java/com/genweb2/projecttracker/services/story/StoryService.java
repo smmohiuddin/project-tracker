@@ -27,4 +27,9 @@ public class StoryService implements IStoryService {
     public void createStory(Story story) throws ProjectTrackerException {
         this.storyMapper.create(story);
     }
+
+    @Override
+    public void updateStory(Story story) throws ProjectTrackerException {
+        this.storyMapper.update(story);
+    }
 }
