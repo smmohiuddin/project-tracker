@@ -30,4 +30,9 @@ public class TaskService implements ITaskService {
     public void createTask(Task task) throws ProjectTrackerException {
         this.taskMapper.create(task);
     }
+
+    @Override
+    public void updateTask(Task task) throws ProjectTrackerException {
+        this.taskMapper.update(task);
+    }
 }

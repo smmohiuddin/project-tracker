@@ -35,13 +35,12 @@ public class TaskController {
         return getTasks(storyID);
     }
 
-    /*
-    @PutMapping(value = "/projects/{projectID}/epics/{epicID}")
-    public List<Epic> updateProject(@PathVariable("projectID") Integer projectID, @PathVariable("epicID") Integer epicID, @RequestBody Epic epic) throws ProjectTrackerException {
-        epic.setEpicID(epicID);
-        epic.getProject().setProjectID(projectID);
-        this.epicService.updateEpic(epic);
-        return getEpics(projectID);
-    }*/
+    @PutMapping(value = "/stories/{storyID}/tasks/{taskID}")
+    public List<Task> updateProject(@PathVariable("storyID") Integer storyID, @PathVariable("taskID") Integer taskID, @RequestBody Task task) throws ProjectTrackerException {
+        task.setTaskID(taskID);
+        task.getStory().setStoryID(storyID);
+        this.taskService.updateTask(task);
+        return getTasks(storyID);
+    }
 
 }

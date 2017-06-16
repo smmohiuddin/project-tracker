@@ -21,6 +21,12 @@ export class TaskService extends BaseService{
         return this.http.post(this.domainUrl + "/stories/" + storyID+ "/tasks", JSON.stringify(body), options).map(this.mapData);
     }
 
+    updateTask(body: Task, storyID: number): Observable<Task[]> {
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+        return this.http.put(this.domainUrl + "/stories/" + storyID + "/tasks/" + body.taskID, JSON.stringify(body), options).map(this.mapData);
+    }
+
     processDates(task, dateUtilService): void {
         task.startDate = dateUtilService.transformServerDate(task.startDate);
         task.endDate = dateUtilService.transformServerDate(task.endDate);

@@ -43,6 +43,15 @@ export class TaskComponent implements OnInit {
         this.closeModal("Epic info saved");
     }
 
+    updateTask(): void {
+        this.taskService.processDates(this.task, this.dateUtilService);
+        this.taskService.updateTask(this.task, this.task.story.storyID).subscribe(
+            tasks => this.tasks = tasks,
+            error => this.errorMessage = <any> error
+        );
+        this.closeModal("project info saved")
+    }
+
     ngOnInit() {
         this.getProjects();
     }
@@ -50,13 +59,14 @@ export class TaskComponent implements OnInit {
     open(content, task) {
 
         if (task != null) {
-            // this.story = Object.assign({}, story);
-            // this.story.epic = (this.selectedEpic === undefined) ? new Epic() : this.selectedEpic;
-            // this.story.epic.project = this.selectedProject;
-            // this.story.startDate = this.dateUtilService.transformUIDate(this.story.startDate);
-            // this.story.actualStartDate = this.dateUtilService.transformUIDate(this.story.actualStartDate);
-            // this.story.endDate = this.dateUtilService.transformUIDate(this.story.endDate);
-            // this.story.actualEndDate = this.dateUtilService.transformUIDate(this.story.actualEndDate);
+            this.task = Object.assign({}, task);
+            this.task.story = (this.selectedStory === undefined) ? new Story() : this.selectedStory;
+            this.task.story.epic = (this.selectedEpic === undefined) ? new Epic() : this.selectedEpic;
+            this.task.story.epic.project = this.selectedProject;
+            this.task.startDate = this.dateUtilService.transformUIDate(this.task.startDate);
+            this.task.actualStartDate = this.dateUtilService.transformUIDate(this.task.actualStartDate);
+            this.task.endDate = this.dateUtilService.transformUIDate(this.task.endDate);
+            this.task.actualEndDate = this.dateUtilService.transformUIDate(this.task.actualEndDate);
         } else {
             this.task = new Task();
             this.task.story = (this.selectedStory === undefined) ? new Story() : this.selectedStory;

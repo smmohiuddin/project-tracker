@@ -15,4 +15,6 @@ public interface ITaskService {
     List<Task> getAllTask(Map<String, Object> param) throws ProjectTrackerException;
 
     void createTask(Task task) throws ProjectTrackerException;
+
+    void updateTask(Task task) throws ProjectTrackerException;
 }

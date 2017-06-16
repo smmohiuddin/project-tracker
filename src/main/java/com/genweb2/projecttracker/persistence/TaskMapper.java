@@ -14,4 +14,6 @@ public interface TaskMapper {
     List<Task> getAllTask(Map<String, Object> param) throws ProjectTrackerException;
 
     void create(Task task) throws ProjectTrackerException;
+
+    void update(Task task) throws ProjectTrackerException;
 }
