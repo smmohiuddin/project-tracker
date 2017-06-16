@@ -11,6 +11,7 @@ const routes: Routes = [
             { path: 'epics', loadChildren: './epic/epic.module#EpicModule' },
             { path: 'stories', loadChildren: './story/story.module#StoryModule' },
             { path: 'tasks', loadChildren: './task/task.module#TaskModule' },
+            { path: 'resources', loadChildren: './resource/resource.module#ResourceModule' },
 
             /*{ path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
             { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
