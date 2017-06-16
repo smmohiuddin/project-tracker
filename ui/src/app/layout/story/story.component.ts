@@ -17,10 +17,11 @@ export class StoryComponent implements OnInit {
     selectedProject: Project;
     selectedEpic: Epic;
     epics: Epic[];
-    modal:NgbModalRef;
+    modal: NgbModalRef;
     story: Story;
+    stories: Story[];
 
-    constructor(private projectService: ProjectService, private epicService: EpicService, private storyService: StoryService, private modalService: NgbModal) {
+    constructor(private projectService: ProjectService, private epicService: EpicService, private storyService: StoryService, private dateUtilService: DateUtilService,private modalService: NgbModal) {
     }
 
     getProjects(): void {
@@ -28,6 +29,48 @@ export class StoryComponent implements OnInit {
             projects => this.projects = projects,
             error => this.errorMessage = <any> error
         );
+    }
+
+    createStory(): void {
+        this.storyService.processDates(this.story, this.dateUtilService);
+        this.storyService.createStory(this.story, this.story.epic.epicID).subscribe(
+            stories => this.stories = stories,
+            error => this.errorMessage = <any> error
+        );
+        this.closeModal("Epic info saved");
+    }
+
+    updateStory(): void {
+        this.storyService.processDates(this.story, this.dateUtilService);
+        this.storyService.updateStory(this.story, this.story.epic.epicID).subscribe(
+            stories => this.stories = stories,
+            error => this.errorMessage = <any> error
+        );
+        this.closeModal("project info saved")
+    }
+
+    open(content, story) {
+
+        if (story != null) {
+            this.story = Object.assign({}, story);
+            this.story.epic = (this.selectedEpic === undefined) ? new Epic() : this.selectedEpic;
+            this.story.epic.project = this.selectedProject;
+            this.story.startDate = this.dateUtilService.transformUIDate(this.story.startDate);
+            this.story.actualStartDate = this.dateUtilService.transformUIDate(this.story.actualStartDate);
+            this.story.endDate = this.dateUtilService.transformUIDate(this.story.endDate);
+            this.story.actualEndDate = this.dateUtilService.transformUIDate(this.story.actualEndDate);
+        } else {
+            this.story = new Story();
+            this.story.epic = (this.selectedEpic === undefined) ? new Epic() : this.selectedEpic;
+            this.story.epic.project = this.selectedProject;
+        }
+
+        // Open Modal
+        this.modal = this.modalService.open(content);
+    }
+
+    ngOnInit() {
+        this.getProjects();
     }
 
     onProjectChange(): void {
@@ -38,20 +81,10 @@ export class StoryComponent implements OnInit {
     }
 
     onEpicChange(): void {
-        console.log(this.selectedEpic);
-    }
-
-    open(content, story) {
-
-        this.story = new Story();
-
-        this.story.epic = this.selectedEpic;
-        // Open Modal
-        this.modal = this.modalService.open(content);
-    }
-
-    ngOnInit() {
-        this.getProjects();
+        this.storyService.getAllStories(this.selectedEpic.epicID).subscribe(
+            stories => this.stories = stories,
+            error => this.errorMessage = <any> error
+        );
     }
 
     closeModal(reason: any) {

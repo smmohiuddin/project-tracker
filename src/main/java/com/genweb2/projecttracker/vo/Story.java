@@ -3,17 +3,17 @@ package com.genweb2.projecttracker.vo;
 /**
  * Created by shakil on 6/15/17.
  */
-public class Story extends Base {
+public class Story extends BaseAttr {
 
-    private Integer epicID;
+    private Integer storyID;
     private Epic epic;
 
-    public Integer getEpicID() {
-        return epicID;
+    public Integer getStoryID() {
+        return storyID;
     }
 
-    public void setEpicID(Integer epicID) {
-        this.epicID = epicID;
+    public void setStoryID(Integer storyID) {
+        this.storyID = storyID;
     }
 
     public Epic getEpic() {

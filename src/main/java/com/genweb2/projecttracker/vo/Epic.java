@@ -3,7 +3,7 @@ package com.genweb2.projecttracker.vo;
 /**
  * Created by shakil on 6/14/17.
  */
-public class Epic extends Base{
+public class Epic extends BaseAttr{
     private Integer epicID;
     private Project project;
 

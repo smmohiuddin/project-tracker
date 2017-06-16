@@ -52,6 +52,6 @@
           ActualStartDate =  #{actualStartDate},
           ActualEndDate =  #{actualEndDate},
           Status =  #{status}
-        WHERE epicID = #{epicID}
+        WHERE EpicID = #{epicID}
     </update>
 </mapper>

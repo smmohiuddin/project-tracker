@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.genweb2.projecttracker.persistence.StoryMapper">
+    
+    <select id="getAllStories" parameterType="map" resultType="Story">
+        SELECT
+          s.StoryID,
+          s.EpicID,
+          s.ShortName,
+          s.Description,
+          s.StartDate,
+          s.EndDate,
+          s.ActualStartDate,
+          s.ActualEndDate,
+          s.Status
+        FROM Story s
+        WHERE 1 = 1
+        <if test="epicID != null"> AND s.EpicID = #{epicID} </if>
+    </select>
+
+    <insert id="create" parameterType="Story">
+        INSERT INTO Story(
+              EpicID,
+              ShortName,
+              Description,
+              StartDate,
+              EndDate,
+              ActualStartDate,
+              ActualEndDate,
+              Status
+          )VALUES (
+              #{epic.epicID},
+              #{shortName},
+              #{description},
+              #{startDate},
+              #{endDate},
+              #{actualStartDate},
+              #{actualEndDate},
+              #{status}
+          )
+    </insert>
+
+    <update id="update" parameterType="Story">
+        UPDATE Story SET
+        EpicID = #{epic.epicID},
+        ShortName =  #{shortName},
+        Description =  #{description},
+        StartDate =  #{startDate},
+        EndDate =  #{endDate},
+        ActualStartDate =  #{actualStartDate},
+        ActualEndDate =  #{actualEndDate},
+        Status =  #{status}
+        WHERE StoryID = #{storyID}
+    </update>
+</mapper>
