@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * Created by shakil on 6/15/17.
  */
-public class Base {
+public abstract class BaseAttr {
 
     private String shortName;
     private String description;
