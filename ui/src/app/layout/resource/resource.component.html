@@ -1,4 +1,40 @@
 <app-page-header [heading]="'Resources'" [icon]="fa-list"></app-page-header>
-<p>
-  resource works!
-</p>
+<div class="row">
+    <div class="col col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm-8">Resource List</div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-sm btn-info pull-right" (click) = "open(content, null)">Add New</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-block table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>Resource Name</th>
+                        <th>Monthly Salary</th>
+                        <th>Overhead Ratio</th>
+                        <th>Billing rate</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor='let resource of resources'>
+                        <td width="20%">{{ resource.resourceName}}</td>
+                        <td width="20%">{{ resource.monthlySalary }}</td>
+                        <td width="10%">{{ resource.overheadRatio }}</td>
+                        <td width="10%">{{ resource.billingRate }}</td>
+                        <td width="40%">
+                            <button class="btn btn-sm btn-warning" (click)="open(content, project)">Edit</button>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
