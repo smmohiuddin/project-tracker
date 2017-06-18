@@ -1,3 +1,111 @@
-<p>
-  project-resource works!
-</p>
+<app-page-header [heading]="'Project Resource List'" [icon]="fa-list"></app-page-header>
+<div class="row">
+    <div class="col col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label class="">Project:</label>
+                                <div class="col-sm-8">
+                                    <select name="project" [(ngModel)]="selectedProject" class="form-control input-sm" (change)="onProjectChange()">
+                                        <option *ngFor="let project of projects" [ngValue]="project"> {{ project.shortName }}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="">Project:</label>
+                                <div class="col-sm-8">
+                                    <select name="resource" [(ngModel)]="selectedResource" class="form-control input-sm" (change)="onResourceChange()">
+                                        <option *ngFor="let resource of resources" [ngValue]="resource"> {{ resource.resourceName }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-sm btn-info pull-right" (click) = "open(content, null)">Add New</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-block table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>Project</th>
+                        <th>Resource</th>
+                        <th>Role</th>
+                        <th>Ratio</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--<tr *ngFor='let resource of resources'>
+                        <td width="20%">{{ resource.resourceName}}</td>
+                        <td width="20%">{{ resource.monthlySalary }}</td>
+                        <td width="10%">{{ resource.overheadRatio }}</td>
+                        <td width="10%">{{ resource.billingRate }}</td>
+                        <td width="40%">
+                            <button class="btn btn-sm btn-warning" (click)="open(content, resource)">Edit</button>
+                        </td>
+                    </tr>-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Assign Resource</h4>
+        <button type="button" class="close" aria-label="Close" (click)="closeModal('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <fieldset class="form-group">
+                    <label>Resource Name</label>
+                    <input name="resourceName" [(ngModel)]="resource.resourceName" class="form-control input-sm" placeholder="Enter resource full Name" />
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <fieldset class="form-group">
+                    <label>Monthly Salary</label>
+                    <input name="monthlySalary" [(ngModel)]="resource.monthlySalary"  class="form-control input-sm" placeholder="Enter monthly salary">
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <fieldset class="form-group">
+                    <label>Overhead Ratio</label>
+                    <input name="overheadRatio" [(ngModel)]="resource.overheadRatio"  class="form-control input-sm" placeholder="Enter overhead ratio">
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <fieldset class="form-group">
+                    <label>Billing Rate</label>
+                    <input name="monthlySalary" [(ngModel)]="resource.billingRate"  class="form-control input-sm" placeholder="Enter billing Rate">
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button *ngIf="!(resource.resourceID > 0)" type="button" class="btn btn-secondary" (click)="createResource()">Save</button>
+        <button *ngIf="resource.resourceID > 0" type="button" class="btn btn-secondary" (click)="updateResource()">Update</button>
+    </div>
+</ng-template>-->
