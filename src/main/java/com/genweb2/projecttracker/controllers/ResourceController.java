@@ -4,10 +4,7 @@ import com.genweb2.projecttracker.exception.ProjectTrackerException;
 import com.genweb2.projecttracker.services.resource.IResourceService;
 import com.genweb2.projecttracker.vo.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,11 +29,9 @@ public class ResourceController {
         return getResources();
     }
 
-    /*
-    @PutMapping(value = "projects/{projectID}")
-    public List<Project> updateProject(@PathVariable("projectID") Integer projectID, @RequestBody Project project) throws ProjectTrackerException{
-        project.setProjectID(projectID);
-        this.projectService.updateProject(project);
-        return getProjects();
-    }*/
+    @PutMapping(value = "resources/{resourceID}")
+    public List<Resource> updateProject(@PathVariable("resourceID") Integer resourceID, @RequestBody Resource resource) throws ProjectTrackerException{
+        this.resourceService.updateResource(resource);
+        return getResources();
+    }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.genweb2.projecttracker.persistence.ResourceMapper">
 
@@ -9,7 +9,7 @@
           r.ResourceID,
           r.ResourceName,
           r.MonthlySalary,
-          r.OverHeadRatio,
+          r.OverheadRatio,
           r.BillingRate
         FROM Resource r
     </select>
@@ -18,26 +18,22 @@
         INSERT INTO Resource(
               ResourceName,
               MonthlySalary,
-              OverHeadRatio,
+              OverheadRatio,
               BillingRate
           )VALUES (
               #{resourceName},
               #{monthlySalary},
-              #{overHeadRatio},
+              #{overheadRatio},
               #{billingRate}
           )
     </insert>
 
-    <!--
-    <update id="update" parameterType="Project">
-        UPDATE Project SET
-          ShortName =  #{shortName},
-          Description =  #{description},
-          StartDate =  #{startDate},
-          EndDate =  #{endDate},
-          ActualStartDate =  #{actualStartDate},
-          ActualEndDate =  #{actualEndDate},
-          Status =  #{status}
-        WHERE ProjectID = #{projectID}
-    </update>-->
+    <update id="update" parameterType="Resource">
+        UPDATE Resource SET
+            ResourceName = #{resourceName},
+            MonthlySalary = #{monthlySalary},
+            OverheadRatio = #{overheadRatio},
+            BillingRate = #{billingRate}
+        WHERE ResourceID = #{resourceID}
+    </update>
 </mapper>

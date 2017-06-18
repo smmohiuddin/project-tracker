@@ -13,4 +13,6 @@ public interface ResourceMapper {
     List<Resource> getAllResources() throws ProjectTrackerException;
 
     void create(Resource resource) throws ProjectTrackerException;
+
+    void update(Resource resource) throws ProjectTrackerException;
 }

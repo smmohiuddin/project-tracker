@@ -14,4 +14,6 @@ public interface IResourceService {
     List<Resource> getAllResources() throws ProjectTrackerException;
 
     void createResource(Resource resource) throws ProjectTrackerException;
+
+    void updateResource(Resource resource) throws ProjectTrackerException;
 }

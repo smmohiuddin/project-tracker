@@ -7,7 +7,7 @@ public class Resource {
     private Integer resourceID;
     private String resourceName;
     private Double monthlySalary;
-    private Double overHeadRatio;
+    private Double overheadRatio;
     private Double billingRate;
 
     public Integer getResourceID() {
@@ -34,12 +34,12 @@ public class Resource {
         this.monthlySalary = monthlySalary;
     }
 
-    public Double getOverHeadRatio() {
-        return overHeadRatio;
+    public Double getOverheadRatio() {
+        return overheadRatio;
     }
 
-    public void setOverHeadRatio(Double overHeadRatio) {
-        this.overHeadRatio = overHeadRatio;
+    public void setOverheadRatio(Double overheadRatio) {
+        this.overheadRatio = overheadRatio;
     }
 
     public Double getBillingRate() {

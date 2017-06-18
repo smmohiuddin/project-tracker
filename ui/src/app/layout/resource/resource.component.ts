@@ -16,17 +16,12 @@ export class ResourceComponent implements OnInit {
     modal: NgbModalRef;
     errorMessage: string;
 
-    constructor(private resourceService: ResourceService, private modalService: NgbModal) {}
+    constructor(private resourceService: ResourceService, private modalService: NgbModal) {
+    }
 
     open(content, resource) {
-
-        // Transforming  Date to UI bootstrap date
         if (resource != null) {
-            /*this.selectedProject = Object.assign({}, project);
-             this.selectedProject.startDate = this.dateUtilService.transformUIDate(this.selectedProject.startDate);
-             this.selectedProject.actualStartDate = this.dateUtilService.transformUIDate(this.selectedProject.actualStartDate);
-             this.selectedProject.endDate = this.dateUtilService.transformUIDate(this.selectedProject.endDate);
-             this.selectedProject.actualEndDate = this.dateUtilService.transformUIDate(this.selectedProject.actualEndDate);*/
+            this.resource = Object.assign({}, resource);
         } else {
             this.resource = new Resource();
         }
@@ -34,6 +29,13 @@ export class ResourceComponent implements OnInit {
         // Open Modal
         this.modal = this.modalService.open(content);
     };
+
+    getResources(): void {
+        this.resourceService.getResources().subscribe(
+            resources => this.resources = resources,
+            error => this.errorMessage = <any> error
+        );
+    }
 
     createResource(): void {
         this.resourceService.createResource(this.resource).subscribe(
@@ -44,7 +46,17 @@ export class ResourceComponent implements OnInit {
         this.closeModal("Resource info saved")
     };
 
+    updateResource(): void {
+        this.resourceService.updateResource(this.resource).subscribe(
+            resources => this.resources = resources,
+            error => this.errorMessage = <any> error
+        );
+
+        this.closeModal("Resource info updated")
+    };
+
     ngOnInit() {
+        this.getResources();
     }
 
     closeModal(reason: any) {

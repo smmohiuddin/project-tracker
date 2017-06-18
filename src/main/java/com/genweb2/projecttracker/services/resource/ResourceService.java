@@ -27,4 +27,9 @@ public class ResourceService implements IResourceService {
     public void createResource(Resource resource) throws ProjectTrackerException {
         this.resourceMapper.create(resource);
     }
+
+    @Override
+    public void updateResource(Resource resource) throws ProjectTrackerException {
+        this.resourceMapper.update(resource);
+    }
 }
