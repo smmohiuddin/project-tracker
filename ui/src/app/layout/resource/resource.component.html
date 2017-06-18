@@ -38,3 +38,54 @@
         </div>
     </div>
 </div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Add New Resource</h4>
+        <button type="button" class="close" aria-label="Close" (click)="closeModal('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <fieldset class="form-group">
+                    <label>Resource Name</label>
+                    <input name="resourceName" [(ngModel)]="resource.resourceName" class="form-control input-sm" placeholder="Enter resource full Name" />
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <fieldset class="form-group">
+                    <label>Monthly Salary</label>
+                    <input name="monthlySalary" [(ngModel)]="resource.monthlySalary"  class="form-control input-sm" placeholder="Enter monthly salary">
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <fieldset class="form-group">
+                    <label>Overhead Ratio</label>
+                    <input name="overheadRatio" [(ngModel)]="resource.overheadRatio"  class="form-control input-sm" placeholder="Enter overhead ratio">
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <fieldset class="form-group">
+                    <label>Billing Rate</label>
+                    <input name="monthlySalary" [(ngModel)]="resource.billingRate"  class="form-control input-sm" placeholder="Enter billing Rate">
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button *ngIf="!(resource.resourceID > 0)" type="button" class="btn btn-secondary" (click)="createResource()">Save</button>
+        <button *ngIf="resource.resourceID > 0" type="button" class="btn btn-secondary" (click)="updateResource()">Update</button>
+    </div>
+</ng-template>

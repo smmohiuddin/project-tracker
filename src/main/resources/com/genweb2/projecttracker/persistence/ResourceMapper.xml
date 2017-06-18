@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.genweb2.projecttracker.persistence.ResourceMapper">
+
+    <select id="getAllResources" resultType="Resource">
+        SELECT
+          r.ResourceID,
+          r.ResourceName,
+          r.MonthlySalary,
+          r.OverHeadRatio,
+          r.BillingRate
+        FROM Resource r
+    </select>
+
+    <insert id="create" parameterType="Resource">
+        INSERT INTO Resource(
+              ResourceName,
+              MonthlySalary,
+              OverHeadRatio,
+              BillingRate
+          )VALUES (
+              #{resourceName},
+              #{monthlySalary},
+              #{overHeadRatio},
+              #{billingRate}
+          )
+    </insert>
+
+    <!--
+    <update id="update" parameterType="Project">
+        UPDATE Project SET
+          ShortName =  #{shortName},
+          Description =  #{description},
+          StartDate =  #{startDate},
+          EndDate =  #{endDate},
+          ActualStartDate =  #{actualStartDate},
+          ActualEndDate =  #{actualEndDate},
+          Status =  #{status}
+        WHERE ProjectID = #{projectID}
+    </update>-->
+</mapper>
