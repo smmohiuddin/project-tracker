@@ -9,6 +9,7 @@ import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
     templateUrl: './project-resource.component.html',
     styleUrls: ['./project-resource.component.scss']
 })
+
 export class ProjectResourceComponent implements OnInit {
 
     projects: Project[];
@@ -51,10 +52,12 @@ export class ProjectResourceComponent implements OnInit {
     }
 
     assignProjectResource(): void {
-        this.projectResourceService.assignProjectResource().subscribe(
+        this.projectResourceService.assignProjectResource(this.projectResource).subscribe(
             projectResources => this.projectResources= projectResources,
             error => this.errorMessage = <any> error
         );
+
+        this.closeModal("Project Resource assigned successfully.")
     }
 
     ngOnInit() {

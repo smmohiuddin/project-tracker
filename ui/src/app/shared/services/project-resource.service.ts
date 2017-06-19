@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {BaseService} from "./base.service";
 import {Observable} from "rxjs";
 import {ProjectResource} from "../models/index";
-import {Http, Response} from "@angular/http";
+import {Http, Response, RequestOptions, Headers} from "@angular/http";
 
 @Injectable()
 export class ProjectResourceService extends BaseService{
@@ -11,8 +11,10 @@ export class ProjectResourceService extends BaseService{
         super();
     }
 
-    assignProjectResource(): Observable<ProjectResource[]> {
-        return this.http.get(this.domainUrl + "/project-resources").map(this.mapData).catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    assignProjectResource(body: ProjectResource): Observable<ProjectResource[]> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(this.domainUrl + "/project-resources", JSON.stringify(body), options).map(this.mapData);
     }
 
     private mapData(response: Response) : ProjectResource[] {

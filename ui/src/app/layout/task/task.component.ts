@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {ProjectService, EpicService, StoryService, TaskService} from "../../shared/services/index";
-import {Project, Epic, Story, Task} from "../../shared/models/index";
+import {ProjectService, EpicService, StoryService, TaskService, ResourceService} from "../../shared/services/index";
+import {Project, Epic, Story, Task, Resource} from "../../shared/models/index";
 import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 import {DateUtilService} from "../../shared/utilities/date-util.service";
 import {isUndefined} from "util";
 
 @Component({
     selector: 'app-task',
-    providers: [ProjectService, EpicService, DateUtilService, StoryService, TaskService, NgbModal],
+    providers: [ProjectService, EpicService, DateUtilService, StoryService, TaskService, ResourceService,NgbModal],
     templateUrl: './task.component.html',
     styleUrls: ['./task.component.scss']
 })
@@ -23,13 +23,20 @@ export class TaskComponent implements OnInit {
     stories: Story[];
     task: Task;
     tasks: Task[];
+    resources: Resource[];
 
-    constructor(private projectService: ProjectService, private epicService: EpicService, private storyService: StoryService, private taskService: TaskService, private dateUtilService: DateUtilService, private modalService: NgbModal) {
-    }
+    constructor(private projectService: ProjectService, private epicService: EpicService, private storyService: StoryService, private taskService: TaskService, private resourceService: ResourceService,private dateUtilService: DateUtilService, private modalService: NgbModal) {}
 
     getProjects(): void {
         this.projectService.getProjects().subscribe(
             projects => this.projects = projects,
+            error => this.errorMessage = <any> error
+        );
+    }
+
+    getResources(): void {
+        this.resourceService.getResources().subscribe(
+            resources => this.resources = resources,
             error => this.errorMessage = <any> error
         );
     }
@@ -54,12 +61,14 @@ export class TaskComponent implements OnInit {
 
     ngOnInit() {
         this.getProjects();
+        this.getResources();
     }
 
     open(content, task) {
 
         if (task != null) {
             this.task = Object.assign({}, task);
+            this.task.resource = (this.task.resource == null) ? new Resource() : this.task.resource;
             this.task.story = (this.selectedStory === undefined) ? new Story() : this.selectedStory;
             this.task.story.epic = (this.selectedEpic === undefined) ? new Epic() : this.selectedEpic;
             this.task.story.epic.project = this.selectedProject;

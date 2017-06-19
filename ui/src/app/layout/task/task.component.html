@@ -58,22 +58,18 @@
                         <th>Description</th>
                         <th>Start Date</th>
                         <th>End Date</th>
-                        <th>Actual Start Date</th>
-                        <th>Actual End Date</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr *ngFor='let task of tasks'>
-                        <td width="15%">{{ task.shortName }}</td>
-                        <td width="25%">{{ task.description }}</td>
-                        <td width="5%">{{ task.startDate }}</td>
-                        <td width="5%">{{ task.endDate }}</td>
-                        <td width="17%">{{ task.actualStartDate }}</td>
-                        <td width="18%">{{ task.actualEndDate }}</td>
-                        <td width="18%">{{ task.status }}</td>
-                        <td width="15%">
+                        <td>{{ task.shortName }}</td>
+                        <td>{{ task.description }}</td>
+                        <td>{{ task.startDate }}</td>
+                        <td>{{ task.endDate }}</td>
+                        <td>{{ task.status }}</td>
+                        <td>
                             <button class="btn btn-sm btn-warning" (click)="open(content, task)">Edit</button>
                         </td>
                     </tr>
@@ -87,13 +83,25 @@
 
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
-        <h4 class="modal-title">Add New Task</h4>
+        <h4 *ngIf="!(task.taskID > 0)" class="modal-title">Add New Task</h4>
+        <h4 *ngIf="(task.taskID > 0)" class="modal-title">Edit Task</h4>
         <button type="button" class="close" aria-label="Close" (click)="closeModal('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
     <div class="modal-body">
+        <div class="row" *ngIf="task.taskID > 0">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Resources</label>
+                    <select name="resource" [(ngModel)]="task.resource.resourceID" class="form-control input-sm">
+                        <option *ngFor="let resource of resources" [ngValue]="resource.resourceID"> {{ resource.resourceName }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">

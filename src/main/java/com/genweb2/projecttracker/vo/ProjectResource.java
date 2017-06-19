@@ -4,10 +4,19 @@ package com.genweb2.projecttracker.vo;
  * Created by shakil on 6/16/17.
  */
 public class ProjectResource {
+    private Integer projectResourceID;
     private Project project;
     private Resource resource;
     private String role;
     private Double ratio;
+
+    public Integer getProjectResourceID() {
+        return projectResourceID;
+    }
+
+    public void setProjectResourceID(Integer projectResourceID) {
+        this.projectResourceID = projectResourceID;
+    }
 
     public Project getProject() {
         return project;

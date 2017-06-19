@@ -1,7 +1,8 @@
-import {Story} from "./story";
+import {Story, Resource} from "./index";
 export class Task {
     taskID : number;
     story: Story;
+    resource:Resource;
     shortName: string;
     description: string;
     startDate: Date;

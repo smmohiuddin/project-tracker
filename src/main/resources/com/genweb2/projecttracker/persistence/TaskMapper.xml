@@ -3,8 +3,16 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.genweb2.projecttracker.persistence.TaskMapper">
-    
-    <select id="getAllTask" parameterType="map" resultType="Task">
+
+    <resultMap id="TaskResourceMap" type="Task">
+        <result property="resource.resourceID" column="ResourceID"/>
+        <result property="resource.resourceName" column="ResourceName"/>
+        <result property="resource.monthlySalary" column="MonthlySalary"/>
+        <result property="resource.overheadRatio" column="OverheadRatio"/>
+        <result property="resource.billingRate" column="BillingRate"/>
+    </resultMap>
+
+    <select id="getAllTask" parameterType="map" resultType="Task" resultMap="TaskResourceMap">
         SELECT
           t.TaskID,
           t.StoryID,
@@ -14,8 +22,14 @@
           t.EndDate,
           t.ActualStartDate,
           t.ActualEndDate,
-          t.Status
+          t.Status,
+          r.ResourceID,
+          r.ResourceName,
+          r.MonthlySalary,
+          r.OverheadRatio,
+          r.BillingRate
         FROM Task t
+        LEFT JOIN Resource r ON t.ResourceID = r.ResourceID
         WHERE 1 = 1
         <if test="storyID != null"> AND t.StoryID = #{storyID} </if>
     </select>
@@ -45,6 +59,7 @@
     <update id="update" parameterType="Story">
         UPDATE Task SET
         StoryID = #{story.storyID},
+        ResourceID = #{resource.resourceID},
         ShortName =  #{shortName},
         Description =  #{description},
         StartDate =  #{startDate},

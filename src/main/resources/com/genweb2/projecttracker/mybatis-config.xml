@@ -15,6 +15,7 @@
         <typeAlias alias="Story" type="com.genweb2.projecttracker.vo.Story"/>
         <typeAlias alias="Task" type="com.genweb2.projecttracker.vo.Task"/>
         <typeAlias alias="Resource" type="com.genweb2.projecttracker.vo.Resource"/>
+        <typeAlias alias="ProjectResource" type="com.genweb2.projecttracker.vo.ProjectResource"/>
 
     </typeAliases>
 
