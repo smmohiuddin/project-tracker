@@ -52,4 +52,7 @@ export class ProjectResourceComponent implements OnInit {
         this.getResources();
     }
 
+    closeModal(reason: any) {
+        this.modal.dismiss(reason);
+    }
 }
