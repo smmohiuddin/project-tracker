@@ -59,6 +59,7 @@
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Status</th>
+                        <th>Assignee</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -69,6 +70,7 @@
                         <td>{{ task.startDate }}</td>
                         <td>{{ task.endDate }}</td>
                         <td>{{ task.status }}</td>
+                        <td>{{ task.resource.resourceName }}</td>
                         <td>
                             <button class="btn btn-sm btn-warning" (click)="open(content, task)">Edit</button>
                         </td>
