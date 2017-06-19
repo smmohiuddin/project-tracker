@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ProjectService, ResourceService} from "../../shared/services/index";
+import {ProjectService, ResourceService, ProjectResourceService} from "../../shared/services/index";
 import {Project, Resource, ProjectResource} from "../../shared/models/index";
 import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
     selector: 'app-project-resource',
-    providers: [ProjectService, ResourceService],
+    providers: [ProjectService, ResourceService, ProjectResourceService],
     templateUrl: './project-resource.component.html',
     styleUrls: ['./project-resource.component.scss']
 })
@@ -18,8 +18,10 @@ export class ProjectResourceComponent implements OnInit {
     resources: Resource[];
     modal: NgbModalRef;
     projectResource: ProjectResource;
+    projectResources: ProjectResource[];
 
-    constructor(private projectService: ProjectService, private resourceService: ResourceService, private modalService: NgbModal) {}
+    constructor(private projectService: ProjectService, private resourceService: ResourceService, private projectResourceService: ProjectResourceService, private modalService: NgbModal) {
+    }
 
     open(content, resource) {
         if (resource != null) {
@@ -44,6 +46,13 @@ export class ProjectResourceComponent implements OnInit {
     getResources(): void {
         this.resourceService.getResources().subscribe(
             resources => this.resources = resources,
+            error => this.errorMessage = <any> error
+        );
+    }
+
+    assignProjectResource(): void {
+        this.projectResourceService.assignProjectResource().subscribe(
+            projectResources => this.projectResources= projectResources,
             error => this.errorMessage = <any> error
         );
     }
