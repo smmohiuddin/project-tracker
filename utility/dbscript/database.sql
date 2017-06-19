@@ -74,5 +74,42 @@ CREATE TABLE Resource
 ALTER TABLE Task ADD ResourceID INT NULL;
 ALTER TABLE Task ADD CONSTRAINT Task_Resource_ResourceID_fk FOREIGN KEY (ResourceID) REFERENCES Resource (ResourceID) ON UPDATE CASCADE;
 ALTER TABLE Task MODIFY COLUMN ResourceID INT AFTER StoryID;
-
 ALTER TABLE Resource CHANGE OverHeadRatio OverheadRatio DOUBLE;
+
+-- Create Project Resource table
+CREATE TABLE ProjectResource
+(
+  ProjectResourceID INT PRIMARY KEY AUTO_INCREMENT,
+  ProjectID INT NOT NULL,
+  ResourceID INT NOT NULL,
+  Role VARCHAR(255) NOT NULL,
+  Ratio DOUBLE NOT NULL,
+  CONSTRAINT ProjectResource_Project_ProjectID_fk FOREIGN KEY (ProjectID) REFERENCES Project (ProjectID) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT ProjectResource_Resource_ResourceID_fk FOREIGN KEY (ResourceID) REFERENCES Resource (ResourceID) ON UPDATE CASCADE
+);
+
+-- Create Engagement table
+CREATE TABLE Engagement
+(
+  EngagementID INT PRIMARY KEY AUTO_INCREMENT,
+  ProjectResourceID INT NOT NULL,
+  StartDate DATETIME NOT NULL,
+  EndDate DATETIME,
+  Ratio DOUBLE,
+  Cost INT,
+  CONSTRAINT Engagement_ProjectResource_ProjectResourceID_fk FOREIGN KEY (ProjectResourceID) REFERENCES ProjectResource (ProjectResourceID)
+);
+
+-- create WorkLog table
+CREATE TABLE WorkLog
+(
+  WorkLogID INT PRIMARY KEY AUTO_INCREMENT,
+  TaskID INT NOT NULL,
+  ResourceID INT NOT NULL,
+  WorkDate DATETIME NOT NULL,
+  Effort DOUBLE NOT NULL,
+  Description TEXT,
+  CONSTRAINT WorkLog_Task_TaskID_fk FOREIGN KEY (TaskID) REFERENCES Task (TaskID),
+  CONSTRAINT WorkLog_Resource_ResourceID_fk FOREIGN KEY (ResourceID) REFERENCES Resource (ResourceID)
+);
+
