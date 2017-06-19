@@ -23,11 +23,11 @@
                     </thead>
                     <tbody>
                     <tr *ngFor='let resource of resources'>
-                        <td width="20%">{{ resource.resourceName}}</td>
-                        <td width="20%">{{ resource.monthlySalary }}</td>
-                        <td width="10%">{{ resource.overheadRatio }}</td>
-                        <td width="10%">{{ resource.billingRate }}</td>
-                        <td width="40%">
+                        <td>{{ resource.resourceName}}</td>
+                        <td>{{ resource.monthlySalary }}</td>
+                        <td>{{ resource.overheadRatio }}</td>
+                        <td>{{ resource.billingRate }}</td>
+                        <td>
                             <button class="btn btn-sm btn-warning" (click)="open(content, resource)">Edit</button>
                         </td>
                     </tr>

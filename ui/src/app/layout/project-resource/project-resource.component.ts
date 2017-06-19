@@ -27,6 +27,7 @@ export class ProjectResourceComponent implements OnInit {
         } else {
             this.projectResource = new ProjectResource();
             this.projectResource.project = this.selectedProject;
+            this.projectResource.resource = this.selectedResource;
         }
 
         // Open Modal
